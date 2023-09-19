@@ -47,6 +47,56 @@ Pour ceux désireux d'approfondir leurs connaissances, nous recommandons de cons
 <p align='justify'>Ensuite, chaque itération de notre simulation (un tour de boucle) évoluera en examinant l'état de chaque cellule en fonction de ses voisins immédiats. Par exemple, si un loup est adjacent à un lapin, il le consommera et gagnera de l'énergie. En dehors de ces interactions prédateur-proie, la simulation gère d'autres facteurs vitaux tels que le mouvement, la reproduction et la mortalité. Pour visualiser ces interactions, envisagez de consulter des schémas ou des simulations similaires en ligne.</p>
 
 ## 5. Fonctions à implémenter <a name="Fonctions"></a>
+### 5.1. creer_animal
+Cette fonction crée un nouvel animal avec des propriétés spécifiques.
+- **Entrée** : 
+  - age (int, défaut=0): L'âge de l'animal
+  - jrs_gestation (int, défaut=0): Les jours de gestation d'un animal
+  - energie (int, défaut=MIN_ENERGIE)
+  - disponible (bool, défaut=True)
+- **Sortie** :
+  - un dictionnaire représentant l'animal
+- **Exemple** :
+  ```python
+  creer_animal(5, 3, 20, True)
+   ```
+  Sortie attendue : 
+  ```python
+  {"age": 5, "jrs_gestation": 3, "energie": 20, "disponible": True}
+  ```
+
+### 5.2. obtenir_age
+Cette fonction récupère l'âge d'un animal donné.
+- **Entrée** : 
+  - animal(dict): un dictionnaire représentant l'animal
+- **Sortie** :
+  - L'âge de l'animal
+- **Exemple** :
+  ```python
+  animal = creer_animal(5, 3, 20, True)
+  print(obtenir_age(animal))
+   ```
+  Sortie attendue : 
+  ```python
+  5
+  ```
+
+
+### 5.3. obtenir_jours_gestation
+Cette fonction récupère les jours de gestation d'un animal donné.
+- **Entrée** : 
+  - animal(dict): un dictionnaire représentant l'animal
+- **Sortie** :
+  - Les jours de gestation de l'animal
+- **Exemple** :
+  ```python
+  animal = creer_animal(5, 3, 20, True)
+  print(obtenir_jours_gestation(animal))
+   ```
+  Sortie attendue : 
+  ```python
+  3
+  ```
 
 ## 6. Barème /20 <a name="bareme"></a>
 
