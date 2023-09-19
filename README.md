@@ -148,6 +148,103 @@ Cette fonction incremente l'âge de l'animal d'une unité et, si l'animal a atte
   {"age": 6, "jrs_gestation": 4, "energie": 20, "disponible": True}
   ```
 
+### 5.7. definir_jours_gestation
+Cette fonction définit les jours de gestation d'un animal donné.
+
+### 5.8. ajouter_energie
+Cette fonction ajoute une quantité spécifique d'énergie à l'animal.
+
+### 5.9. definir_disponibilite
+Cette fonction définit la disponibilité d'un animal donné.
+
+### 5.10. creer_case
+Cette fonction crée une nouvelle case avec un état spécifique et éventuellement un animal.
+- **Entrée** : 
+  - animal(dict, défaut=None): un dictionnaire représentant l'animal
+  - etat(Contenu, défaut=Contenu.VIDE): 
+- **Sortie** :
+  - un dictionnaire représentant la case
+- **Exemple** :
+  ```python
+  animal = creer_animal(5, 3, 20, True)
+  creer_case(Contenu.PROIE, animal)
+   ```
+  Sortie attendue : 
+  ```python
+  {"etat": Contenu.PROIE, "animal": {"age": 5, "jrs_gestation": 3, "energie": 20, "disponible": True}}
+  ```
+
+### 5.11. obtenir_etat
+Cette fonction récupère l'état d'une case donnée.
+- **Entrée** : 
+  - case (dict)
+- **Sortie** :
+  - Contenu (l'état de la case, p.ex. Contenu.VIDE, Contenu.PROIE, ...)
+- **Exemple** :
+  ```python
+  animal = creer_animal(5, 3, 20, True)
+  case = creer_case(Contenu.PROIE, animal)
+  obtenir_etat(case)
+   ```
+  Sortie attendue : 
+  ```python
+  Contenu.PROIE
+  ```
+
+
+
+### 5.12. obtenir_animal
+Cette fonction récupère l'animal d'une case donnée.
+- **Entrée** : 
+  - case (dict)
+- **Sortie** :
+  - L'animal dans la case
+- **Exemple** :
+  ```python
+  animal = creer_animal(5, 3, 20, True)
+  case = creer_case(Contenu.PROIE, animal)
+  obtenir_animal(case)
+   ```
+  Sortie attendue : 
+  ```python
+  {"age": 5, "jrs_gestation": 3, "energie": 20, "disponible": True}
+  ```
+
+
+### 5.13. definir_etat
+Cette fonction définit l'état d'une case donnée.
+- **Entrée** : 
+  - case (dict)
+  - etat (Contenu)
+- **Exemple** :
+  ```python
+  animal = creer_animal(5, 3, 20, True)
+  case = creer_case(Contenu.VIDE, animal)
+  definir_etat(case, Contenu.PROIE)
+   ```
+  Sortie attendue : 
+  ```python
+  {"etat": Contenu.PROIE, "animal": {"age": 5, "jrs_gestation": 3, "energie": 20, "disponible": True}}
+  ```
+
+
+### 5.14. definir_animal
+Cette fonction définit l'animal d'une case donnée
+- **Entrée** : 
+  - case (dict)
+  - animal (dict)
+- **Exemple** :
+  ```python
+  animal = creer_animal(5, 3, 20, True)
+  case = creer_case(Contenu.PROIE, None)
+  definir_animal(case, animal)
+   ```
+  Sortie attendue : 
+  ```python
+  {"etat": Contenu.PROIE, "animal": {"age": 5, "jrs_gestation": 3, "energie": 20, "disponible": True}}
+  ```
+
+
 ## 6. Barème /20 <a name="bareme"></a>
 
 |**Nom des fonctions**|**Nombre de points attribuer**|
