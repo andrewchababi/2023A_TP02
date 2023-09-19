@@ -51,7 +51,7 @@ Pour ceux désireux d'approfondir leurs connaissances, nous recommandons de cons
 
 ## 5. Fonctions à implémenter <a name="Fonctions"></a>
 ### 5.1. creer_animal
-Cette fonction crée un nouvel animal avec des propriétés spécifiques.
+Cette fonction permet de créer un nouvel animal avec des propriétés spécifiques.
 - **Entrée** : 
   - age (int, défaut=0): L'âge de l'animal en jours/jours de simulation.
   - jrs_gestation (int, défaut=0):  Si l'animal est en gestation, c'est le nombre de jours depuis le début de la gestation.
@@ -86,7 +86,7 @@ Cette fonction récupère l'âge d'un animal donné.
 
 
 ### 5.3. obtenir_jours_gestation
-Cette fonction récupère les jours de gestation d'un animal donné.
+Cette fonction est utilisée pour obtenir les jours de gestation d'un animal donné.
 - **Entrée** : 
   - animal(dict): un dictionnaire représentant l'animal
 - **Sortie** :
@@ -102,7 +102,7 @@ Cette fonction récupère les jours de gestation d'un animal donné.
   ```
 
 ### 5.4. obtenir_energie
-Cette fonction récupère le niveau d'énergie actuel de l'animal.
+Cette fonction permet de récupérer le niveau d'énergie actuel d'un animal.
 - **Entrée** : 
   - animal(dict): un dictionnaire représentant l'animal
 - **Sortie** :
@@ -118,7 +118,7 @@ Cette fonction récupère le niveau d'énergie actuel de l'animal.
   ```
 
 ### 5.5. obtenir_disponibilite
-Cette fonction récupère le statut de disponibilité  d'un animal donné.
+Cette fonction renvoie le statut de disponibilité pour la reproduction de l'animal.
 - **Entrée** : 
   - animal(dict): un dictionnaire représentant l'animal
 - **Sortie** :
@@ -134,7 +134,7 @@ Cette fonction récupère le statut de disponibilité  d'un animal donné.
   ```
 
 ### 5.6. incrementer_age
-Cette fonction incremente l'âge de l'animal d'une unité et, si l'animal a atteint l'âge de puberté, augmente également ses jours de gestation.
+Cette fonction est utilisée pour augmenter l'âge de l'animal d'une unité. Si l'animal a atteint l'âge de la puberté, ses jours de gestation augmentent également.
 - **Entrée** : 
   - animal(dict): un dictionnaire représentant l'animal
   - puberte(int): l'âge de puberté
@@ -149,7 +149,7 @@ Cette fonction incremente l'âge de l'animal d'une unité et, si l'animal a atte
   ```
 
 ### 5.7. definir_jours_gestation
-Cette fonction définit le nombre de jours restants pour la gestation d'un animal donné. Cette fonction serait principalement utilisée pour les animaux qui sont enceintes, afin de suivre combien de jours il reste avant que l'animal ne mette bas.
+Cette fonction permet de définir les jours de gestation d'un animal. Elle serait principalement utilisée pour suivre combien de jours il reste avant que l'animal ne donne naissance.
 - **Entrée** : 
   - animal(dict, défaut=None): un dictionnaire représentant l'animal
   - jours (int) : Le nombre de jours à définir pour la gestation de l'animal.
@@ -166,7 +166,7 @@ Cette fonction définit le nombre de jours restants pour la gestation d'un anima
   ```
 
 ### 5.8. ajouter_energie
-Cette fonction augmente la quantité d'énergie de l'animal d'une quantité spécifique. Cette fonction est utile pour simuler, par exemple, qu'un animal a mangé et a gagné de l'énergie.
+Elle sert à augmenter la quantité d'énergie de l'animal d'une quantité spécifiée, simulant par exemple le fait qu'un animal ait mangé.
 - **Entrée** : 
   - animal(dict, défaut=None): un dictionnaire représentant l'animal
   - quantite (int) : La quantité d'énergie à ajouter à l'animal.
@@ -183,7 +183,7 @@ Cette fonction augmente la quantité d'énergie de l'animal d'une quantité spé
   ```
 
 ### 5.9. definir_disponibilite
-Cette fonction définit la disponibilité d'un animal pour la reproduction.
+Cette fonction permet de définir si un animal est disponible pour la reproduction ou non.
 - **Entrée** : 
   - animal(dict, défaut=None): un dictionnaire représentant l'animal
   - disponibilite (bool) : La disponibilité à définir pour l'animal (True signifie qu'il est disponible, False qu'il ne l'est pas). 
@@ -200,7 +200,7 @@ Cette fonction définit la disponibilité d'un animal pour la reproduction.
   ```
 
 ### 5.10. creer_case
-Cette fonction crée une nouvelle case avec un état spécifique et éventuellement un animal.
+Cette fonction crée une nouvelle case (comme dans une grille) avec un état spécifique (p.ex. si la case contient une proie, un prédateur ou est vide) et éventuellement un animal.
 - **Entrée** : 
   - animal(dict, défaut=None): un dictionnaire représentant l'animal
   - etat(Contenu, défaut=Contenu.VIDE): 
@@ -217,7 +217,7 @@ Cette fonction crée une nouvelle case avec un état spécifique et éventuellem
   ```
 
 ### 5.11. obtenir_etat
-Cette fonction récupère l'état d'une case donnée.
+Cette fonction renvoie l'état d'une case donnée (par exemple, si la case est vide ou contient une proie).
 - **Entrée** : 
   - case (dict)
 - **Sortie** :
@@ -236,7 +236,7 @@ Cette fonction récupère l'état d'une case donnée.
 
 
 ### 5.12. obtenir_animal
-Cette fonction récupère l'animal d'une case donnée.
+Cette fonction permet de récupérer l'animal présent dans une case donnée.
 - **Entrée** : 
   - case (dict)
 - **Sortie** :
@@ -271,7 +271,7 @@ Cette fonction définit l'état d'une case donnée.
 
 
 ### 5.14. definir_animal
-Cette fonction définit l'animal d'une case donnée
+Cette fonction est utilisée pour définir ou remplacer l'animal présent dans une case donnée.
 - **Entrée** : 
   - case (dict)
   - animal (dict)
@@ -316,9 +316,6 @@ Cette fonction modifie une case spécifique dans une grille.
 
 
 ### 5.25. check_nb_proies
-
-
-
 
 
 ### 5.26. ajuster_position_pour_grille_circulaire
