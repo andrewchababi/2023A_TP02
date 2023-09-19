@@ -22,6 +22,8 @@
 ## 1. Introduction <a name="Introduction"></a>
 <p align='justify'>L'automate cellulaire, capable de calculabilité universelle malgré sa simplicité, est un concept captivant qui a séduit les scientifiques dans divers domaines allant de la biologie à la physique et à l'informatique. Parmi ces modèles, le "Jeu de la Vie", inventé par John Horton Conway en 1970, est particulièrement intrigant. Ce modèle, bien que simple en apparence, il génère une gamme impressionnante de comportements complexes, allant de formes statiques à des structures oscillantes et même des entités mobiles.</p>
 
+<img src=" (https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif)" />
+
 <p align='justify'>Dans cette version adaptée, nous explorerons une dimension supplémentaire de complexité : une dynamique proies-prédateurs. Notre grille de simulation ne se contentera pas d'héberger des cellules "vivantes" ou "mortes", mais aussi des lapins, représentant les proies, et des loups, incarnant les prédateurs. Cette extension ajoute non seulement du réalisme à notre simulation, mais elle nous permet également de comprendre les systèmes dynamiques et les équilibres naturels qui en résultent.</p>
 
 <p align='justify'>Ce laboratoire n'est pas simplement un exercice de programmation : c'est une aventure de découverte. À chaque ligne de code, nous dévoilons un peu plus du mystère des systèmes complexes qui émergent de règles simples. Préparez-vous à plonger dans le monde fascinant des automates cellulaires et des interactions proies-prédateurs, tout en maitrisant les compétences clés en programmation Python.
