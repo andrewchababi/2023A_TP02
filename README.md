@@ -196,7 +196,7 @@ Cette fonction définit la disponibilité d'un animal pour la reproduction.
    ```
   Sortie attendue : 
   ```python
-  {"age": 6, "jrs_gestation": 40, "energie": 20, "disponible": False}
+  {"age": 6, "jrs_gestation": 50, "energie": 20, "disponible": False}
   ```
 
 ### 5.10. creer_case
