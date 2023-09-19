@@ -53,10 +53,10 @@ Pour ceux désireux d'approfondir leurs connaissances, nous recommandons de cons
 ### 5.1. creer_animal
 Cette fonction crée un nouvel animal avec des propriétés spécifiques.
 - **Entrée** : 
-  - age (int, défaut=0): L'âge de l'animal
-  - jrs_gestation (int, défaut=0): Les jours de gestation d'un animal
-  - energie (int, défaut=MIN_ENERGIE): L'énergie d'un animal 
-  - disponible (bool, défaut=True): Statut de disponibilité d'un animal 
+  - age (int, défaut=0): L'âge de l'animal en jours/jours de simulation.
+  - jrs_gestation (int, défaut=0):  Si l'animal est en gestation, c'est le nombre de jours depuis le début de la gestation.
+  - energie (int, défaut=MIN_ENERGIE): Le niveau d'énergie actuel de l'animal. Cela peut déterminer la capacité de l'animal à se déplacer, à chasser, à fuir, etc.
+  - disponible (bool, défaut=True): Un booléen indiquant si l'animal est disponible pour la reproduction.
 - **Sortie** :
   - un dictionnaire représentant l'animal
 - **Exemple** :
@@ -90,7 +90,7 @@ Cette fonction récupère les jours de gestation d'un animal donné.
 - **Entrée** : 
   - animal(dict): un dictionnaire représentant l'animal
 - **Sortie** :
-  - Les jours de gestation de l'animal
+  - Le nombre de jours depuis le début de la gestation
 - **Exemple** :
   ```python
   animal = creer_animal(5, 3, 20, True)
@@ -102,11 +102,11 @@ Cette fonction récupère les jours de gestation d'un animal donné.
   ```
 
 ### 5.4. obtenir_energie
-Cette fonction récupère l'énergie d'un animal donné.
+Cette fonction récupère le niveau d'énergie actuel de l'animal.
 - **Entrée** : 
   - animal(dict): un dictionnaire représentant l'animal
 - **Sortie** :
-  - L'énergie de l'animal
+  - Le niveau d'énergie actuel de l'animal
 - **Exemple** :
   ```python
   animal = creer_animal(5, 3, 20, True)
