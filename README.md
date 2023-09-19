@@ -149,13 +149,55 @@ Cette fonction incremente l'âge de l'animal d'une unité et, si l'animal a atte
   ```
 
 ### 5.7. definir_jours_gestation
-Cette fonction définit les jours de gestation d'un animal donné.
+Cette fonction définit le nombre de jours restants pour la gestation d'un animal donné. Cette fonction serait principalement utilisée pour les animaux qui sont enceintes, afin de suivre combien de jours il reste avant que l'animal ne mette bas.
+- **Entrée** : 
+  - animal(dict, défaut=None): un dictionnaire représentant l'animal
+  - jours (int) : Le nombre de jours à définir pour la gestation de l'animal.
+- **Sortie** :
+  - un dictionnaire représentant la case
+- **Exemple** :
+  ```python
+  animal = creer_animal(5, 50, 20, True)
+  definir_jours_gestation(animal, 40)
+   ```
+  Sortie attendue : 
+  ```python
+  {"age": 6, "jrs_gestation": 40, "energie": 20, "disponible": True}
+  ```
 
 ### 5.8. ajouter_energie
-Cette fonction ajoute une quantité spécifique d'énergie à l'animal.
+Cette fonction augmente la quantité d'énergie de l'animal d'une quantité spécifique. Cette fonction est utile pour simuler, par exemple, qu'un animal a mangé et a gagné de l'énergie.
+- **Entrée** : 
+  - animal(dict, défaut=None): un dictionnaire représentant l'animal
+  - quantite (int) : La quantité d'énergie à ajouter à l'animal.
+- **Sortie** :
+  - un dictionnaire représentant la case
+- **Exemple** :
+  ```python
+  animal = creer_animal(5, 50, 20, True)
+  ajouter_energie(animal, 20)
+   ```
+  Sortie attendue : 
+  ```python
+  {"age": 6, "jrs_gestation": 50, "energie": 40, "disponible": True}
+  ```
 
 ### 5.9. definir_disponibilite
-Cette fonction définit la disponibilité d'un animal donné.
+Cette fonction définit la disponibilité d'un animal pour la reproduction.
+- **Entrée** : 
+  - animal(dict, défaut=None): un dictionnaire représentant l'animal
+  - disponibilite (bool) : La disponibilité à définir pour l'animal (True signifie qu'il est disponible, False qu'il ne l'est pas). 
+- **Sortie** :
+  - un dictionnaire représentant la case
+- **Exemple** :
+  ```python
+  animal = creer_animal(5, 50, 20, True)
+  definir_disponibilite(animal, False)
+   ```
+  Sortie attendue : 
+  ```python
+  {"age": 6, "jrs_gestation": 40, "energie": 20, "disponible": False}
+  ```
 
 ### 5.10. creer_case
 Cette fonction crée une nouvelle case avec un état spécifique et éventuellement un animal.
