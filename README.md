@@ -25,18 +25,6 @@
 <p align="center">
     <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Gol-gun.gif" alt="Jeu de la Vie" width="500">
 </p>
-
-<p align='justify'>Dans cette version adaptée, nous explorerons une dimension supplémentaire de complexité : une dynamique proies-prédateurs. Notre grille de simulation ne se contentera pas d'héberger des cellules "vivantes" ou "mortes", mais aussi des lapins, représentant les proies, et des loups, incarnant les prédateurs. Cette extension ajoute non seulement du réalisme à notre simulation, mais elle nous permet également de comprendre les systèmes dynamiques et les équilibres naturels qui en résultent.</p>
-
-<p align='justify'>Ce laboratoire n'est pas simplement un exercice de programmation : c'est une aventure de découverte. À chaque ligne de code, nous dévoilons un peu plus du mystère des systèmes complexes qui émergent de règles simples. Préparez-vous à plonger dans le monde fascinant des automates cellulaires et des interactions proies-prédateurs, tout en maîtrisant les compétences clés en programmation Python.
-</p>
-
-
-## 1. Introduction <a name="Introduction"></a>
-<p align='justify'>L'automate cellulaire, capable de calculabilité universelle malgré sa simplicité, est un concept captivant qui a séduit les scientifiques dans divers domaines allant de la biologie à la physique et à l'informatique. Parmi ces modèles, le "Jeu de la Vie", inventé par John Horton Conway en 1970, est particulièrement intrigant. Ce modèle, bien que simple en apparence, il génère une gamme impressionnante de comportements complexes, allant de formes statiques à des structures oscillantes et même des entités mobiles.</p>
-
-<img src=" (https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif)" />
-
 <p align='justify'>Dans cette version adaptée, nous explorerons une dimension supplémentaire de complexité : une dynamique proies-prédateurs. Notre grille de simulation ne se contentera pas d'héberger des cellules "vivantes" ou "mortes", mais aussi des lapins, représentant les proies, et des loups, incarnant les prédateurs. Cette extension ajoute non seulement du réalisme à notre simulation, mais elle nous permet également de comprendre les systèmes dynamiques et les équilibres naturels qui en résultent.</p>
 
 <p align='justify'>Ce laboratoire n'est pas simplement un exercice de programmation : c'est une aventure de découverte. À chaque ligne de code, nous dévoilons un peu plus du mystère des systèmes complexes qui émergent de règles simples. Préparez-vous à plonger dans le monde fascinant des automates cellulaires et des interactions proies-prédateurs, tout en maitrisant les compétences clés en programmation Python.
@@ -67,8 +55,8 @@ Cette fonction crée un nouvel animal avec des propriétés spécifiques.
 - **Entrée** : 
   - age (int, défaut=0): L'âge de l'animal
   - jrs_gestation (int, défaut=0): Les jours de gestation d'un animal
-  - energie (int, défaut=MIN_ENERGIE)
-  - disponible (bool, défaut=True)
+  - energie (int, défaut=MIN_ENERGIE): L'énergie d'un animal 
+  - disponible (bool, défaut=True): Statut de disponibilité d'un animal 
 - **Sortie** :
   - un dictionnaire représentant l'animal
 - **Exemple** :
@@ -111,6 +99,38 @@ Cette fonction récupère les jours de gestation d'un animal donné.
   Sortie attendue : 
   ```python
   3
+  ```
+
+### 5.4. obtenir_energie
+Cette fonction récupère l'énergie d'un animal donné.
+- **Entrée** : 
+  - animal(dict): un dictionnaire représentant l'animal
+- **Sortie** :
+  - L'énergie de l'animal
+- **Exemple** :
+  ```python
+  animal = creer_animal(5, 3, 20, True)
+  print(obtenir_energie(animal))
+   ```
+  Sortie attendue : 
+  ```python
+  20
+  ```
+
+### 5.5. obtenir_disponibilite
+Cette fonction récupère le statut de disponibilité  d'un animal donné.
+- **Entrée** : 
+  - animal(dict): un dictionnaire représentant l'animal
+- **Sortie** :
+  - Le statut de disponibilité  de l'animal
+- **Exemple** :
+  ```python
+  animal = creer_animal(5, 3, 20, True)
+  print(obtenir_disponibilite(animal))
+   ```
+  Sortie attendue : 
+  ```python
+  True
   ```
 
 ## 6. Barème /20 <a name="bareme"></a>
