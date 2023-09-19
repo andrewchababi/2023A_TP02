@@ -244,6 +244,63 @@ Cette fonction définit l'animal d'une case donnée
   {"etat": Contenu.PROIE, "animal": {"age": 5, "jrs_gestation": 3, "energie": 20, "disponible": True}}
   ```
 
+### 5.15. creer_grille
+Cette fonction crée une nouvelle grille avec des dimensions spécifiées et remplit chaque case avec l'état VIDE.
+
+### 5.16. obtenir_case
+Cette fonction récupère une case spécifique dans une grille.
+
+### 5.17. definir_case
+Cette fonction modifie une case spécifique dans une grille.
+
+### 5.18. vider_case
+
+### 5.19. obtenir_population
+
+
+### 5.20. obtenir_dimensions
+
+
+### 5.21. incrementer_nb_proies
+
+
+### 5.22. decrementer_nb_proies
+
+
+### 5.23. incrementer_nb_predateurs
+
+
+### 5.24. decrementer_nb_predateurs
+
+
+### 5.25. check_nb_proies
+
+
+
+
+
+### 5.26. ajuster_position_pour_grille_circulaire
+
+
+### 5.27. choix_voisin_autour
+
+
+### 5.28. remplir_grille
+
+### 5.29. rendre_animaux_disponibles
+
+### 5.30. deplacer_animal
+
+### 5.31. executer_cycle_predateur 
+
+
+### 5.32. executer_cycle_proie
+
+
+### 5.33. executer_cycle
+
+### 5.34. simulation_est_terminee
+
 
 ## 6. Barème /20 <a name="bareme"></a>
 
