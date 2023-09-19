@@ -133,6 +133,21 @@ Cette fonction récupère le statut de disponibilité  d'un animal donné.
   True
   ```
 
+### 5.6. incrementer_age
+Cette fonction incremente l'âge de l'animal d'une unité et, si l'animal a atteint l'âge de puberté, augmente également ses jours de gestation.
+- **Entrée** : 
+  - animal(dict): un dictionnaire représentant l'animal
+  - puberte(int): l'âge de puberté
+- **Exemple** :
+  ```python
+  animal = creer_animal(5, 3, 20, True)
+  incrementer_age(animal, 6)
+   ```
+  Sortie attendue : 
+  ```python
+  {"age": 6, "jrs_gestation": 4, "energie": 20, "disponible": True}
+  ```
+
 ## 6. Barème /20 <a name="bareme"></a>
 
 |**Nom des fonctions**|**Nombre de points attribuer**|
