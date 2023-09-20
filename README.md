@@ -8,7 +8,9 @@
 - [Objectifs](#Objectif)
 - [Description: La dynamique proie-prédateur](#Description)
 - [Déroulement de la simulation](#simulation)
-- [Fonctions à implémenter](#Fonctions)
+- [Module animal](#animal)
+- [Module grille animaux](#animaux)
+- [Module simulation](#animaux)
 - [Barème](#bareme)
 - [Annexe: Guide et normes de codage](#annexe)
 
@@ -49,14 +51,21 @@ Pour ceux désireux d'approfondir leurs connaissances, nous recommandons de cons
 
 <p align='justify'>Ensuite, chaque itération de notre simulation (un tour de boucle) évoluera en examinant l'état de chaque cellule en fonction de ses voisins immédiats. Par exemple, si un loup est adjacent à un lapin, il le consommera et gagnera de l'énergie. En dehors de ces interactions prédateur-proie, la simulation gère d'autres facteurs vitaux tels que le mouvement, la reproduction et la mortalité. Pour visualiser ces interactions, envisagez de consulter des schémas ou des simulations similaires en ligne.</p>
 
-## 5. Fonctions à implémenter <a name="Fonctions"></a>
+## 5. Module animal <a name="animale"></a>
+
+<p align='justify'>Pour la simulation, nous devons connaître l'âge de l'animal, une mesure de son énergie restante (un prédateur qui ne se nourrit pas perd de l'énergie), la durée de la gestation (exprimée en jours, où un jour correspond à un cycle de simulation), ainsi qu'une valeur booléenne indiquant s'il est apte à se déplacer.</p>
+
+<p align='justify'>Le champ « .disponible » nous indique si l'animal a déjà été déplacé durant le cycle en cours. En réalité, les animaux se déplacent simultanément, mais dans une simulation basée sur une grille, comme celle que nous prévoyons d'implémenter, le parcours se fait soit de haut en bas et de gauche à droite, soit le contraire. Cette approche supprime l'effet de simultanéité. Ainsi, il est possible de déplacer un animal et de le retrouver plus loin lors du parcours de la grille. C'est pourquoi, après avoir déplacé un animal, nous assignons la valeur `False` à cette propriété. De cette manière, nous nous assurons de déplacer uniquement les animaux qui sont disponibles pour le faire, c'est-à-dire ceux qui n'ont pas encore été déplacés lors du cycle en cours. À la fin de chaque cycle, tous les animaux redeviennent disponibles.</p>
+
+<p align='justify'>Ce module offre des fonctions permettant l'accès en lecture et en écriture aux attributs d'une variable de type "animal" passée en paramètre. </p>
+
 ### 5.1. creer_animal
 Cette fonction permet de créer un nouvel animal avec des propriétés spécifiques.
 - **Entrée** : 
   - age (int, défaut=0): L'âge de l'animal en jours/jours de simulation.
   - jrs_gestation (int, défaut=0):  Si l'animal est en gestation, c'est le nombre de jours depuis le début de la gestation.
   - energie (int, défaut=MIN_ENERGIE): Le niveau d'énergie actuel de l'animal. Cela peut déterminer la capacité de l'animal à se déplacer, à chasser, à fuir, etc.
-  - disponible (bool, défaut=True): Un booléen indiquant si l'animal est disponible pour la reproduction.
+  - disponible (bool, défaut=True): Un booléen indiquant si l'animal est disponible au déplacement.
 - **Sortie** :
   - un dictionnaire représentant l'animal
 - **Exemple** :
@@ -118,7 +127,7 @@ Cette fonction permet de récupérer le niveau d'énergie actuel d'un animal.
   ```
 
 ### 5.5. obtenir_disponibilite
-Cette fonction renvoie le statut de disponibilité pour la reproduction de l'animal.
+Cette fonction renvoie le statut de disponibilité de l'animal au déplacement.
 - **Entrée** : 
   - animal(dict): un dictionnaire représentant l'animal
 - **Sortie** :
@@ -183,7 +192,7 @@ Elle sert à augmenter la quantité d'énergie de l'animal d'une quantité spéc
   ```
 
 ### 5.9. definir_disponibilite
-Cette fonction permet de définir si un animal est disponible pour la reproduction ou non.
+Cette fonction permet de définir si un animal est disponible au déplacement ou non.
 - **Entrée** : 
   - animal(dict, défaut=None): un dictionnaire représentant l'animal
   - disponibilite (bool) : La disponibilité à définir pour l'animal (True signifie qu'il est disponible, False qu'il ne l'est pas). 
@@ -199,7 +208,10 @@ Cette fonction permet de définir si un animal est disponible pour la reproducti
   {"age": 6, "jrs_gestation": 50, "energie": 20, "disponible": False}
   ```
 
-### 5.10. creer_case
+## 6. Module grille animaux <a name="animaux"></a>
+<p align='justify'>Pour représenter l'environnement, nous utilisons une liste de listes, simulant un tableau à deux dimensions, où chaque case peut accueillir un animal. Chaque case possède également un état (ou contenu) permettant d'identifier l'espèce de l'animal qui s'y trouve, ou d'indiquer si elle est vide. Il est essentiel de connaître les dimensions de la grille (en termes de largeur et de longueur en cases) ainsi que le nombre de proies et de prédateurs présents dans celle-ci.</p>
+
+### 6.1. creer_case
 Cette fonction crée une nouvelle case (comme dans une grille) avec un état spécifique (p.ex. si la case contient une proie, un prédateur ou est vide) et éventuellement un animal.
 - **Entrée** : 
   - animal(dict, défaut=None): un dictionnaire représentant l'animal
@@ -216,7 +228,7 @@ Cette fonction crée une nouvelle case (comme dans une grille) avec un état sp�
   {"etat": Contenu.PROIE, "animal": {"age": 5, "jrs_gestation": 3, "energie": 20, "disponible": True}}
   ```
 
-### 5.11. obtenir_etat
+### 6.2. obtenir_etat
 Cette fonction renvoie l'état d'une case donnée (par exemple, si la case est vide ou contient une proie).
 - **Entrée** : 
   - case (dict)
@@ -235,7 +247,7 @@ Cette fonction renvoie l'état d'une case donnée (par exemple, si la case est v
 
 
 
-### 5.12. obtenir_animal
+### 6.3. obtenir_animal
 Cette fonction permet de récupérer l'animal présent dans une case donnée.
 - **Entrée** : 
   - case (dict)
@@ -253,7 +265,7 @@ Cette fonction permet de récupérer l'animal présent dans une case donnée.
   ```
 
 
-### 5.13. definir_etat
+### 6.4. definir_etat
 Cette fonction définit l'état d'une case donnée.
 - **Entrée** : 
   - case (dict)
@@ -270,7 +282,7 @@ Cette fonction définit l'état d'une case donnée.
   ```
 
 
-### 5.14. definir_animal
+### 6.5. definir_animal
 Cette fonction est utilisée pour définir ou remplacer l'animal présent dans une case donnée.
 - **Entrée** : 
   - case (dict)
@@ -286,62 +298,64 @@ Cette fonction est utilisée pour définir ou remplacer l'animal présent dans u
   {"etat": Contenu.PROIE, "animal": {"age": 5, "jrs_gestation": 3, "energie": 20, "disponible": True}}
   ```
 
-### 5.15. creer_grille
+### 6.6. creer_grille
 Cette fonction crée une nouvelle grille avec des dimensions spécifiées et remplit chaque case avec l'état VIDE.
 
-### 5.16. obtenir_case
+### 6.7. obtenir_case
 Cette fonction récupère une case spécifique dans une grille.
 
-### 5.17. definir_case
+### 6.8. definir_case
 Cette fonction modifie une case spécifique dans une grille.
 
-### 5.18. vider_case
+### 6.9. vider_case
 
-### 5.19. obtenir_population
-
-
-### 5.20. obtenir_dimensions
+### 6.10. obtenir_population
 
 
-### 5.21. incrementer_nb_proies
+### 6.11. obtenir_dimensions
 
 
-### 5.22. decrementer_nb_proies
+### 6.12. incrementer_nb_proies
 
 
-### 5.23. incrementer_nb_predateurs
+### 6.13. decrementer_nb_proies
 
 
-### 5.24. decrementer_nb_predateurs
+### 6.14. incrementer_nb_predateurs
 
 
-### 5.25. check_nb_proies
+### 6.15. decrementer_nb_predateurs
 
 
-### 5.26. ajuster_position_pour_grille_circulaire
+### 6.16. check_nb_proies
 
 
-### 5.27. choix_voisin_autour
+### 6.17. ajuster_position_pour_grille_circulaire
 
 
-### 5.28. remplir_grille
-
-### 5.29. rendre_animaux_disponibles
-
-### 5.30. deplacer_animal
-
-### 5.31. executer_cycle_predateur 
+### 6.18. choix_voisin_autour
 
 
-### 5.32. executer_cycle_proie
+### 6.19. remplir_grille
 
 
-### 5.33. executer_cycle
+## 7. Module simulation <a name="simulation"></a>
+### 7.1. rendre_animaux_disponibles
 
-### 5.34. simulation_est_terminee
+### 7.2. deplacer_animal
+
+### 7.3. executer_cycle_predateur 
 
 
-## 6. Barème /20 <a name="bareme"></a>
+### 7.4. executer_cycle_proie
+
+
+### 7.5. executer_cycle
+
+### 7.6. simulation_est_terminee
+
+
+## 8. Barème /20 <a name="bareme"></a>
 
 |**Nom des fonctions**|**Nombre de points attribuer**|
 | :- | :- |
