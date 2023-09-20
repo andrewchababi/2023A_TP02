@@ -8,7 +8,7 @@
 - [Objectifs](#Objectif)
 - [Description: La dynamique proie-prédateur](#Description)
 - [Déroulement de la simulation](#simulation)
-- [Fonctions à implémenter](#Fonctions)
+- [Module animal](#animal)
 - [Barème](#bareme)
 - [Annexe: Guide et normes de codage](#annexe)
 
@@ -49,14 +49,14 @@ Pour ceux désireux d'approfondir leurs connaissances, nous recommandons de cons
 
 <p align='justify'>Ensuite, chaque itération de notre simulation (un tour de boucle) évoluera en examinant l'état de chaque cellule en fonction de ses voisins immédiats. Par exemple, si un loup est adjacent à un lapin, il le consommera et gagnera de l'énergie. En dehors de ces interactions prédateur-proie, la simulation gère d'autres facteurs vitaux tels que le mouvement, la reproduction et la mortalité. Pour visualiser ces interactions, envisagez de consulter des schémas ou des simulations similaires en ligne.</p>
 
-## 5. Fonctions à implémenter <a name="Fonctions"></a>
+## 5. Module animal <a name="animale"></a>
 ### 5.1. creer_animal
 Cette fonction permet de créer un nouvel animal avec des propriétés spécifiques.
 - **Entrée** : 
   - age (int, défaut=0): L'âge de l'animal en jours/jours de simulation.
   - jrs_gestation (int, défaut=0):  Si l'animal est en gestation, c'est le nombre de jours depuis le début de la gestation.
   - energie (int, défaut=MIN_ENERGIE): Le niveau d'énergie actuel de l'animal. Cela peut déterminer la capacité de l'animal à se déplacer, à chasser, à fuir, etc.
-  - disponible (bool, défaut=True): Un booléen indiquant si l'animal est disponible pour la reproduction.
+  - disponible (bool, défaut=True): Un booléen indiquant si l'animal est disponible au déplacement.
 - **Sortie** :
   - un dictionnaire représentant l'animal
 - **Exemple** :
@@ -118,7 +118,7 @@ Cette fonction permet de récupérer le niveau d'énergie actuel d'un animal.
   ```
 
 ### 5.5. obtenir_disponibilite
-Cette fonction renvoie le statut de disponibilité pour la reproduction de l'animal.
+Cette fonction renvoie le statut de disponibilité de l'animal au déplacement.
 - **Entrée** : 
   - animal(dict): un dictionnaire représentant l'animal
 - **Sortie** :
@@ -183,7 +183,7 @@ Elle sert à augmenter la quantité d'énergie de l'animal d'une quantité spéc
   ```
 
 ### 5.9. definir_disponibilite
-Cette fonction permet de définir si un animal est disponible pour la reproduction ou non.
+Cette fonction permet de définir si un animal est disponible au déplacement ou non.
 - **Entrée** : 
   - animal(dict, défaut=None): un dictionnaire représentant l'animal
   - disponibilite (bool) : La disponibilité à définir pour l'animal (True signifie qu'il est disponible, False qu'il ne l'est pas). 
