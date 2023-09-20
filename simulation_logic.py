@@ -5,24 +5,6 @@ from simulation_constants import *
 from animal import *
 from grille_animaux import *
 
-
-
-def remplir_grille(grille, pourcentage_remplissage_total):
-    # TODO: Obtenir les dimensions de la grille et calculer le nombre total de cases (nb_cases).
-    # Utiliser la fonction "obtenir_dimensions" pour obtenir nb_lig et nb_col.
-
-    # TODO: Calculer le nombre de proies et de prédateurs à placer dans la grille.
-    # Utiliser les constantes POURCENTAGE_PROIES, MAX_AGE_PROIE, NB_JRS_GESTATION_PROIE et NB_JRS_PUBERTE_PROIE
-    # pour les proies, et les équivalents pour les prédateurs.
-
-    # TODO: Remplir la grille avec le nombre calculé de proies.
-    # Utiliser les fonctions "creer_animal", "definit_etat", "definir_animal", et "incrementer_nb_proies".
-
-    # TODO: Remplir la grille avec le nombre calculé de prédateurs.
-    # Utiliser les fonctions "creer_animal", "definit_etat", "definir_animal", et "incrementer_nb_predateurs".
-    pass
-
-
 def simulation_est_terminee(grille):
     # TODO: Vérifier si la simulation est terminée.
     # Elle se termine lorsque le nombre de proies ou le nombre de prédateurs est égal à zéro.
