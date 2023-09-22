@@ -684,6 +684,7 @@ Cette fonction cherche tous les voisins autour de la cellule (ligne, col) qui co
 
 
 ## 7. Module simulation <a name="simulation"></a>
+### 7.1. rendre_animaux_disponibles
 Cette fonction parcourir chaque case de la grille et rendre tous les animaux disponibles pour la prochaine itération.
 - **Entrée** : 
   - grille(dict): Une structure représentant la grille.
@@ -894,19 +895,43 @@ Cette fonction siimule le passage d'un jour dans la grille. Les prédateurs peuv
   
 
 
-## 8. Barème /20 <a name="bareme"></a>
+## 8. Barème /100 <a name="bareme"></a>
 
 |**Nom des fonctions**|**Nombre de points attribuer**|
 | :- | :- |
-|*Exercice 01*|0.5|
-|*Exercice 02*|1.0|
-|*Exercice 03*|1.5|
-|*Exercice 04*|4.0|
-|*Exercice 05*|1.5|
-|*Exercice 06*|3.0|
-|*Exercice 07*|2.5|
-|*Exercice 08*|2.0|
-|*Exercice 09*|4.0|
+|creer_animal
+|obtenir_age                               |  |
+|obtenir_jours_gestation                   |  |
+|obtenir_energie                           |  |
+|obtenir_disponibilite                     |  |
+|incrementer_age                           |  |
+|definir_jours_gestation                   |  |
+|ajouter_energie                           |  |
+|definir_disponibilite                     |  |
+|creer_case                                |  |
+|obtenir_etat                              |  |
+|obtenir_animal                            |  |
+|definir_etat                              |  |
+|definir_animal                            |  |
+|creer_grille                              |  |
+|obtenir_case                              |  |
+|definir_case                              |  |
+|vider_case                                |  |
+|obtenir_population                        |  |
+|obtenir_dimensions                        |  |
+|incrementer_nb_proies                     |  |
+|decrementer_nb_proies                     |  |
+|incrementer_nb_predateurs                 |  |
+|decrementer_nb_predateurs                 |  |
+|check_nb_proies                           |  |
+|ajuster_position_pour_grille_circulaire   |  |
+|choix_voisin_autour                       |  |
+|remplir_grille                            |  |
+|rendre_animaux_disponibles                |  |
+|deplacer_animal                           |  |
+|executer_cycle_proie                      |  |
+|executer_cycle_predateur                  |  |
+|executer_cycle                            |  |
 
 ## Annexe: Guide et normes de codage <a name="annexe"></a>
 - [Le guide maison](https://github.com/INF1007-Gabarits/Guide-codage-python) de normes supplémentaires à respecter
