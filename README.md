@@ -231,7 +231,7 @@ Cette fonction crée une nouvelle case (comme dans une grille) avec un état sp�
 ### 6.2. obtenir_etat
 Cette fonction renvoie l'état d'une case donnée (par exemple, si la case est vide ou contient une proie).
 - **Entrée** : 
-  - case (dict)
+  - case (dict): un dictionnaire représentant la case
 - **Sortie** :
   - Contenu (l'état de la case, p.ex. Contenu.VIDE, Contenu.PROIE, ...)
 - **Exemple** :
@@ -250,7 +250,7 @@ Cette fonction renvoie l'état d'une case donnée (par exemple, si la case est v
 ### 6.3. obtenir_animal
 Cette fonction permet de récupérer l'animal présent dans une case donnée.
 - **Entrée** : 
-  - case (dict)
+  - case (dict): un dictionnaire représentant la case
 - **Sortie** :
   - L'animal dans la case
 - **Exemple** :
@@ -268,8 +268,8 @@ Cette fonction permet de récupérer l'animal présent dans une case donnée.
 ### 6.4. definir_etat
 Cette fonction définit l'état d'une case donnée.
 - **Entrée** : 
-  - case (dict)
-  - etat (Contenu)
+  - case (dict): un dictionnaire représentant la case
+  - etat (Contenu): L'état de la case (proie, prédateur ou vide).
 - **Exemple** :
   ```python
   animal = creer_animal(5, 3, 20, True)
@@ -285,8 +285,8 @@ Cette fonction définit l'état d'une case donnée.
 ### 6.5. definir_animal
 Cette fonction est utilisée pour définir ou remplacer l'animal présent dans une case donnée.
 - **Entrée** : 
-  - case (dict)
-  - animal (dict)
+  - case (dict): un dictionnaire représentant la case
+  - animal (dict): un dictionnaire représentant un animal
 - **Exemple** :
   ```python
   animal = creer_animal(5, 3, 20, True)
@@ -300,46 +300,48 @@ Cette fonction est utilisée pour définir ou remplacer l'animal présent dans u
 
 ### 6.6. creer_grille
 Cette fonction crée une nouvelle grille avec des dimensions spécifiées et remplit chaque case avec l'état VIDE.
+- matrice(list x list): Matrice de la grille avec des cases.
+- nb_proies(int): Nombre de proies dans la grille.
+- nb_predateurs(int): Nombre de prédateurs dans la grille.
+- nb_ligne(int): Nombre de lignes de la grille.
+- nb_colonnes(int): Nombre de colonnes de la grille.
 - **Entrée** : 
-  - case (dict)
+  - nb_ligne(int): Nombre de lignes de la grille.
+  - nb_colonnes(int): Nombre de colonnes de la grille.
 - **Sortie** :
-  - L'animal dans la case
+  - Une structure représentant la grille.
 - **Exemple** :
   ```python
-  animal = creer_animal(5, 3, 20, True)
-  case = creer_case(Contenu.PROIE, animal)
-  obtenir_animal(case)
+  
    ```
   Sortie attendue : 
   ```python
-  {"age": 5, "jrs_gestation": 3, "energie": 20, "disponible": True}
+  
   ```
   
 ### 6.7. obtenir_case
 Cette fonction récupère une case spécifique dans une grille.
 - **Entrée** : 
-  - case (dict)
+  - case (dict): un dictionnaire représentant la case
 - **Sortie** :
   - L'animal dans la case
 - **Exemple** :
   ```python
-  animal = creer_animal(5, 3, 20, True)
-  case = creer_case(Contenu.PROIE, animal)
-  obtenir_animal(case)
+  
    ```
   Sortie attendue : 
   ```python
-  {"age": 5, "jrs_gestation": 3, "energie": 20, "disponible": True}
+  
   ```
 
 
 ### 6.8. definir_case
 Cette fonction met à jour l'état de la case située à la ligne et la colonne données.
 - **Entrée** : 
-  - grille(dict):
-  - etat(CONTENUE)
-  - ligne(int)
-  - colonne(int)
+  - grille(dict): Une structure représentant la grille.
+  - etat(CONTENUE): L'état à mettre à jour (proie, prédateur ou vide).
+  - ligne(int): L'index de la ligne de la grille.
+  - colonne(int): L'index de la colonne de la grille.
 - **Exemple** :
   ```python
   case_11 = {"etat": Contenu.VIDE, "animal": None}
@@ -367,25 +369,38 @@ Cette fonction met à jour l'état de la case située à la ligne et la colonne 
 ### 6.9. vider_case
 Cette fonction Écraser la case située à la ligne et la colonne données avec une case vide
 - **Entrée** :
-  - grille(dict):
-  - ligne(int):
-  - colonne(int):
+  - grille(dict): Une structure représentant la grille.
+  - ligne(int): L'index de la ligne de la grille.
+  - colonne(int): L'index de la colonne de la grille.
 - **Exemple** :
   ```python
   case_11 = {"etat": Contenu.VIDE, "animal": None}
   case_12 = {"etat": Contenu.PROIE, "animal": creer_animal()}
   case_21 = {"etat": Contenu.PREDATEUR, "animal": creer_animal()}
   case_22 = {"etat": Contenu.VIDE, "animal": None}
+  grille = {"matrice": [[case_11, {"etat": Contenu.PREDATEUR, "animal": creer_animal()}],
+                        [case_21, case_22]],
+            "nb_proies": 0,
+            "nb_predateurs": 2,
+            "nb_lignes": 2,
+            "nb_colonnes": 2}
+  vider_case(grille, 0, 1)
    ```
   Sortie attendue : 
   ```python
-  
+  grille = {"matrice": [[case_11, {"etat": Contenu.VIDE, "animal": None}],
+                        [case_21, case_22]],
+            "nb_proies": 0,
+            "nb_predateurs": 1,
+            "nb_lignes": 2,
+            "nb_colonnes": 2}
+
   ```
   
 ### 6.10. obtenir_population
 Cette fonction récupère le nombre de proies et de prédateurs dans une grille.
 - **Entrée** : 
-  - grille(dict):
+  - grille(dict): Une structure représentant la grille.
 - **Sortie** :
   - Le nombre de proies et de prédateurs dans cette ordre
 - **Exemple** :
@@ -394,17 +409,23 @@ Cette fonction récupère le nombre de proies et de prédateurs dans une grille.
   case_12 = {"etat": Contenu.PROIE, "animal": creer_animal()}
   case_21 = {"etat": Contenu.PREDATEUR, "animal": creer_animal()}
   case_22 = {"etat": Contenu.VIDE, "animal": None}
-
+  grille = {"matrice": [[case_11, case_12],
+                        [case_21, case_22]],
+            "nb_proies": 1,
+            "nb_predateurs": 1,
+            "nb_lignes": 2,
+            "nb_colonnes": 2}
+  obtenir_population(grille)
    ```
   Sortie attendue : 
   ```python
-
-    ```
+  (1, 1)
+  ```
   
 ### 6.11. obtenir_dimensions
 Cette fonction récupère les dimensions de la grille.
 - **Entrée** : 
-  - grille(dict):
+  - grille(dict): Une structure représentant la grille.
 - **Sortie** :
   - Les dimensions de la grille ligne et colonne
 - **Exemple** :
@@ -413,87 +434,117 @@ Cette fonction récupère les dimensions de la grille.
   case_12 = {"etat": Contenu.PROIE, "animal": creer_animal()}
   case_21 = {"etat": Contenu.PREDATEUR, "animal": creer_animal()}
   case_22 = {"etat": Contenu.VIDE, "animal": None}
-
+  grille = {"matrice": [[case_11, case_12],
+                        [case_21, case_22]],
+            "nb_proies": 1,
+            "nb_predateurs": 1,
+            "nb_lignes": 2,
+            "nb_colonnes": 2}
+  obtenir_dimensions(grille)
    ```
   Sortie attendue : 
   ```python
-
+  (2, 2)
   ```
   
 ### 6.12. incrementer_nb_proies
 Cette fonction incrémente le nombre de proies dans la grille.
 - **Entrée** : 
-  - grille(dict):
+  - grille(dict): Une structure représentant la grille.
 - **Exemple** :
   ```python
   case_11 = {"etat": Contenu.VIDE, "animal": None}
   case_12 = {"etat": Contenu.PROIE, "animal": creer_animal()}
   case_21 = {"etat": Contenu.PREDATEUR, "animal": creer_animal()}
   case_22 = {"etat": Contenu.VIDE, "animal": None}
-
+  grille = {"matrice": [[case_11, case_12],
+                        [case_21, case_22]],
+            "nb_proies": 1,
+            "nb_predateurs": 1,
+            "nb_lignes": 2,
+            "nb_colonnes": 2}
+  incrementer_nb_proies(grille)
    ```
   Sortie attendue : 
   ```python
-
-    ```
+  grille["nb_proies"] = 2
+  ```
   
 ### 6.13. decrementer_nb_proies
 Cette fonction décrémente le nombre de proies dans la grille.
 - **Entrée** : 
-  - grille(dict):
+  - grille(dict): Une structure représentant la grille.
 - **Exemple** :
   ```python
   case_11 = {"etat": Contenu.VIDE, "animal": None}
   case_12 = {"etat": Contenu.PROIE, "animal": creer_animal()}
   case_21 = {"etat": Contenu.PREDATEUR, "animal": creer_animal()}
   case_22 = {"etat": Contenu.VIDE, "animal": None}
-
+  grille = {"matrice": [[case_11, case_12],
+                        [case_21, case_22]],
+            "nb_proies": 2,
+            "nb_predateurs": 1,
+            "nb_lignes": 2,
+            "nb_colonnes": 2}
+  decrementer_nb_proies(grille)
    ```
   Sortie attendue : 
   ```python
-
-    ```
+  grille["nb_proies"] = 1
+  ```
   
 ### 6.14. incrementer_nb_predateurs
 Cette fonction incrémente le nombre de prédateurs dans la grille.
 - **Entrée** : 
-  - grille(dict):
+  - grille(dict): Une structure représentant la grille.
 - **Exemple** :
   ```python
   case_11 = {"etat": Contenu.VIDE, "animal": None}
   case_12 = {"etat": Contenu.PROIE, "animal": creer_animal()}
   case_21 = {"etat": Contenu.PREDATEUR, "animal": creer_animal()}
   case_22 = {"etat": Contenu.VIDE, "animal": None}
-
+  grille = {"matrice": [[case_11, case_12],
+                        [case_21, case_22]],
+            "nb_proies": 1,
+            "nb_predateurs": 1,
+            "nb_lignes": 2,
+            "nb_colonnes": 2}
+  incrementer_nb_predateurs(grille)
    ```
   Sortie attendue : 
   ```python
-  
+  grille["nb_predateurs"] = 2
   ```
   
 
 ### 6.15. decrementer_nb_predateurs
 Cette fonction décrémente le nombre de prédateurs dans la grille.
 - **Entrée** : 
-  - grille(dict):
+  - grille(dict): Une structure représentant la grille.
 - **Exemple** :
   ```python
   case_11 = {"etat": Contenu.VIDE, "animal": None}
   case_12 = {"etat": Contenu.PROIE, "animal": creer_animal()}
   case_21 = {"etat": Contenu.PREDATEUR, "animal": creer_animal()}
   case_22 = {"etat": Contenu.VIDE, "animal": None}
-
+  grille = {"matrice": [[case_11, case_12],
+                        [case_21, case_22]],
+            "nb_proies": 1,
+            "nb_predateurs": 2,
+            "nb_lignes": 2,
+            "nb_colonnes": 2}
+  decrementer_nb_predateurs(grille)
    ```
   Sortie attendue : 
   ```python
-  
+  grille["nb_predateurs"] = 1
   ```
   
 
 ### 6.16. check_nb_proies
 Cette fonction vérifie si le nombre actuel de proies dans la grille est inférieur à max_val 
 - **Entrée** : 
-  - grille(dict):
+  - grille(dict): Une structure représentant la grille.
 - **Sortie** :
   - Un booléen pour vérifier si le nombre actuel de proies dans la grille est inférieur à max_val 
 - **Exemple** :
@@ -502,12 +553,18 @@ Cette fonction vérifie si le nombre actuel de proies dans la grille est inféri
   case_12 = {"etat": Contenu.PROIE, "animal": creer_animal()}
   case_21 = {"etat": Contenu.PREDATEUR, "animal": creer_animal()}
   case_22 = {"etat": Contenu.VIDE, "animal": None}
-
-  
+  grille = {"matrice": [[case_11, case_12],
+                        [case_21, case_22]],
+            "nb_proies": 5,
+            "nb_predateurs": 1,
+            "nb_lignes": 2,
+            "nb_colonnes": 2}
+  max_val = 10
+  check_nb_proies(grille, max_val) 
    ```
   Sortie attendue : 
   ```python
-  
+  True
   ```
   
 
@@ -515,23 +572,23 @@ Cette fonction vérifie si le nombre actuel de proies dans la grille est inféri
 ### 6.17. ajuster_position_pour_grille_circulaire
 Cette fonction ajuster la position (ligne, colonne) pour une grille circulaire en utilisant les dimensions de la grille.
 - **Entrée** : 
-  - lig(int)
-  - col(int)
-  - dim_lig(int)
-  - dim_col(int)
+  - lig(int): Ligne actuelle.
+  - col(int): Colonne actuelle.
+  - dim_lig(int): Nombre total de lignes dans la grille.
+  - dim_col(int): Nombre total de colonnes dans la grille.
 - **Sortie** :
   - La nouvelle position
 - **Exemple** :
   ```python
-  case_11 = {"etat": Contenu.VIDE, "animal": None}
-  case_12 = {"etat": Contenu.PROIE, "animal": creer_animal()}
-  case_21 = {"etat": Contenu.PREDATEUR, "animal": creer_animal()}
-  case_22 = {"etat": Contenu.VIDE, "animal": None}
-
-   ```
+  lig = -1
+  col = 3
+  dim_lig = 2
+  dim_col = 2
+  ajuster_position_pour_grille_circulaire(lig, col, dim_lig, dim_col)
+  ```
   Sortie attendue : 
   ```python
-
+  (1, 1)
   ```
   
 
@@ -539,10 +596,10 @@ Cette fonction ajuster la position (ligne, colonne) pour une grille circulaire e
 ### 6.18. choix_voisin_autour
 Cette fonction cherche tous les voisins autour de la cellule (ligne, col) qui correspondent au "contenu" donné.
 - **Entrée** : 
-  - grille(dict):
-  - ligne(int):
-  - colonne(int):
-  - etat(CONTENU):
+  - grille(dict): Une structure représentant la grille.
+  - etat(CONTENUE): L'état à mettre à jour (proie, prédateur ou vide).
+  - ligne(int): L'index de la ligne de la grille.
+  - colonne(int): L'index de la colonne de la grille.
 - **Sortie** :
   - Le nombre total des voisins, ainsi que les coordonnées d'un voisin choisi aléatoirement.
 - **Exemple** :
@@ -551,31 +608,49 @@ Cette fonction cherche tous les voisins autour de la cellule (ligne, col) qui co
   case_12 = {"etat": Contenu.PROIE, "animal": creer_animal()}
   case_21 = {"etat": Contenu.PREDATEUR, "animal": creer_animal()}
   case_22 = {"etat": Contenu.VIDE, "animal": None}
-
+  grille = {"matrice": [[case_11, case_12],
+                        [case_21, case_22]],
+            "nb_proies": 1,
+            "nb_predateurs": 1,
+            "nb_lignes": 2,
+            "nb_colonnes": 2}
+  ligne = 1
+  colonne = 1
+  etat = Contenu.PROIE
+  choix_voisin_autour(grille, ligne, colonne, etat)
    ```
   Sortie attendue : 
   ```python
-
-    ```
+  (1, [(0, 1)])
+  ```
   
 
 
 ### 6.19. remplir_grille
 - **Entrée** : 
-  - grille
-  - pourcentage_proie
-  - pourcentage_predateur
+  - grille(dict): Une structure représentant la grille.
+  - pourcentage_proie(float): Le pourcentage de proies à remplir dans la grille.
+  - pourcentage_predateur(float): Le pourcentage de prédateurs à remplir dans la grille.
 - **Exemple** :
   ```python
   case_11 = {"etat": Contenu.VIDE, "animal": None}
   case_12 = {"etat": Contenu.PROIE, "animal": creer_animal()}
   case_21 = {"etat": Contenu.PREDATEUR, "animal": creer_animal()}
   case_22 = {"etat": Contenu.VIDE, "animal": None}
-
-   ```
+  grille = {"matrice": [[case_11, case_12],
+                        [case_21, case_22]],
+            "nb_proies": 1,
+            "nb_predateurs": 1,
+            "nb_lignes": 2,
+            "nb_colonnes": 2}
+  pourcentage_proie = 0.5
+  pourcentage_predateur = 0.5
+  remplir_grille(grille, pourcentage_proie, pourcentage_predateur)
+  ```
   Sortie attendue : 
   ```python
-
+  grille["nb_proies"] = 2
+  grille["nb_predateurs"] = 2
   ```
   
 
