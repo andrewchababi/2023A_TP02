@@ -215,7 +215,7 @@ Cette fonction permet de définir si un animal est disponible au déplacement ou
 Cette fonction crée une nouvelle case (comme dans une grille) avec un état spécifique (p.ex. si la case contient une proie, un prédateur ou est vide) et éventuellement un animal.
 - **Entrée** : 
   - animal(dict, défaut=None): un dictionnaire représentant l'animal
-  - etat(Contenu, défaut=Contenu.VIDE): 
+  - etat(CONTENUE): L'état de la case (proie, prédateur ou vide).
 - **Sortie** :
   - un dictionnaire représentant la case
 - **Exemple** :
@@ -269,7 +269,7 @@ Cette fonction permet de récupérer l'animal présent dans une case donnée.
 Cette fonction définit l'état d'une case donnée.
 - **Entrée** : 
   - case (dict): un dictionnaire représentant la case
-  - etat (Contenu): L'état de la case (proie, prédateur ou vide).
+  - etat(CONTENUE): L'état à mettre à jour (proie, prédateur ou vide).
 - **Exemple** :
   ```python
   animal = creer_animal(5, 3, 20, True)
@@ -299,12 +299,7 @@ Cette fonction est utilisée pour définir ou remplacer l'animal présent dans u
   ```
 
 ### 6.6. creer_grille
-Cette fonction crée une nouvelle grille avec des dimensions spécifiées et remplit chaque case avec l'état VIDE.
-- matrice(list x list): Matrice de la grille avec des cases.
-- nb_proies(int): Nombre de proies dans la grille.
-- nb_predateurs(int): Nombre de prédateurs dans la grille.
-- nb_ligne(int): Nombre de lignes de la grille.
-- nb_colonnes(int): Nombre de colonnes de la grille.
+Cette fonction crée une nouvelle grille avec des dimensions spécifiées et remplit chaque case avec l'état VIDE.  
 - **Entrée** : 
   - nb_ligne(int): Nombre de lignes de la grille.
   - nb_colonnes(int): Nombre de colonnes de la grille.
@@ -312,26 +307,47 @@ Cette fonction crée une nouvelle grille avec des dimensions spécifiées et rem
   - Une structure représentant la grille.
 - **Exemple** :
   ```python
-  
+  nb_lignes = 2
+  nb_colonnes = 2
+  grille = creer_grille(nb_lignes, nb_colonnes)
    ```
   Sortie attendue : 
   ```python
-  
+  grille = {"matrice": [[{"etat": Contenu.VIDE, "animal": None}, {"etat": Contenu.VIDE, "animal": None}],
+                        [{"etat": Contenu.VIDE, "animal": None}, {"etat": Contenu.VIDE, "animal": None}]],
+            "nb_proies": 0,
+            "nb_predateurs": 0,
+            "nb_lignes": 2,
+            "nb_colonnes": 2}
   ```
   
 ### 6.7. obtenir_case
 Cette fonction récupère une case spécifique dans une grille.
 - **Entrée** : 
-  - case (dict): un dictionnaire représentant la case
+  - grille(dict): Une structure représentant la grille.
+  - etat(CONTENUE): L'état à mettre à jour (proie, prédateur ou vide).
+  - ligne(int): L'index de la ligne de la grille.
+  - colonne(int): L'index de la colonne de la grille.
 - **Sortie** :
   - L'animal dans la case
 - **Exemple** :
   ```python
+  case_11 = {"etat": Contenu.PROIE, "animal": {"age": 1, "jrs_gestation": 0, "energie": 50, "disponible": True}}
+  case_12 = {"etat": Contenu.VIDE, "animal": None}
+  case_21 = {"etat": Contenu.VIDE, "animal": None}
+  case_22 = {"etat": Contenu.PREDATEUR, "animal": {"age": 2, "jrs_gestation": 0, "energie": 40, "disponible": False}}
   
-   ```
+  grille = {"matrice": [[case_11, case_12],
+                        [case_21, case_22]],
+            "nb_proies": 1,
+            "nb_predateurs": 1,
+            "nb_lignes": 2,
+            "nb_colonnes": 2}
+  case = obtenir_case(grille, 0, 0)
+  ```
   Sortie attendue : 
   ```python
-  
+  case = {"age": 1, "jrs_gestation": 0, "energie": 50, "disponible": True}
   ```
 
 
@@ -584,11 +600,12 @@ Cette fonction ajuster la position (ligne, colonne) pour une grille circulaire e
   col = 3
   dim_lig = 2
   dim_col = 2
-  ajuster_position_pour_grille_circulaire(lig, col, dim_lig, dim_col)
+  lig, col= ajuster_position_pour_grille_circulaire(lig, col, dim_lig, dim_col)
   ```
   Sortie attendue : 
   ```python
-  (1, 1)
+  lig = 1
+  col = 1
   ```
   
 
@@ -617,11 +634,12 @@ Cette fonction cherche tous les voisins autour de la cellule (ligne, col) qui co
   ligne = 1
   colonne = 1
   etat = Contenu.PROIE
-  choix_voisin_autour(grille, ligne, colonne, etat)
+  nb_voisin, coordonnees = choix_voisin_autour(grille, ligne, colonne, etat)
    ```
   Sortie attendue : 
   ```python
-  (1, [(0, 1)])
+  nb_voisin = 1
+  coordonnees = [0, 1]
   ```
   
 
