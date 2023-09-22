@@ -720,7 +720,7 @@ Cette fonction cherche tous les voisins autour de la cellule (ligne, col) qui co
 
 ### 7.3. executer_cycle_proie
 <p align="center">
-    <img src="assets/Algo_3.svg" alt="remplir_grille">
+    <img src="assets/Algo_2.svg" alt="remplir_grille">
 </p>
 
 - **Entrée** : 
@@ -742,7 +742,7 @@ Cette fonction cherche tous les voisins autour de la cellule (ligne, col) qui co
 
 ### 7.4. executer_cycle_predateur 
 <p align="center">
-    <img src="assets/Algo_2.svg" alt="remplir_grille">
+    <img src="assets/Algo_3.svg" alt="remplir_grille">
 </p>
 
 - **Entrée** : 
