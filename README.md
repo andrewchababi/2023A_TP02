@@ -800,7 +800,10 @@ Cette fonction gère le cycle de vie d'un prédateur à une position donnée sur
 </p>
 
 - **Entrée** : 
-  - case (dict)
+  - grille(dict): Une structure représentant la grille.
+  - animal (dict): un dictionnaire représentant un animal
+  - ligne(int): L'index de la ligne de la grille.
+  - colonne(int): L'index de la colonne de la grille.
 - **Exemple** :
   ```python
   case_11 = {"etat": Contenu.VIDE, "animal": None}
@@ -833,29 +836,62 @@ Cette fonction gère le cycle de vie d'un prédateur à une position donnée sur
 
 
 ### 7.5. executer_cycle
-Simule le passage d'un jour dans la grille. Les prédateurs peuvent manger les proies et les animaux peuvent se déplacer.
+Cette fonction siimule le passage d'un jour dans la grille. Les prédateurs peuvent manger les proies et les animaux peuvent se déplacer. Pour ce faire marquer tous les animaux comme disponibles pour ce cycle, puis parcourir la grille pour exécuter la bonne procédure du cycle de vie pour chaque animal. Il est nécessaires d'utiliser au minimum les fonctions "rendre_animaux_disponibles", "executer_cycle_proie" et "executer_cycle_predateur".
 <p align="center">
     <img src="assets/Algo_4.svg" alt="remplir_grille">
 </p>
 
 - **Entrée** : 
-  - case (dict)
-- **Sortie** :
-  - L'animal dans la case
+  - grille(dict): Une structure représentant la grille.
 - **Exemple** :
   ```python
-  animal = creer_animal(5, 3, 20, True)
-  case = creer_case(Contenu.PROIE, animal)
-  obtenir_animal(case)
+  case_11 = {"etat": Contenu.VIDE, "animal": None}
+  case_12 = {"etat": Contenu.PROIE, "animal": {"age": 1, "jrs_gestation": 0, "energie": 10, "disponible": False}}
+  case_13 = {"etat": Contenu.VIDE, "animal": None}
+  case_14 = {"etat": Contenu.PREDATEUR, "animal": {"age": 3, "jrs_gestation": 1, "energie": 7, "disponible": False}}
+  
+  case_21 = {"etat": Contenu.PREDATEUR, "animal": {"age": 2, "jrs_gestation": 1, "energie": 8, "disponible": False}}
+  case_22 = {"etat": Contenu.VIDE, "animal": None}
+  case_23 = {"etat": Contenu.PROIE, "animal": {"age": 1, "jrs_gestation": 0, "energie": 9, "disponible": False}}
+  case_24 = {"etat": Contenu.VIDE, "animal": None}
+  
+  case_31 = {"etat": Contenu.PROIE, "animal": {"age": 0, "jrs_gestation": 0, "energie": 10, "disponible": False}}
+  case_32 = {"etat": Contenu.VIDE, "animal": None}
+  case_33 = {"etat": Contenu.VIDE, "animal": None}
+  case_34 = {"etat": Contenu.PREDATEUR, "animal": {"age": 1, "jrs_gestation": 0, "energie": 5, "disponible": False}}
+  
+  case_41 = {"etat": Contenu.VIDE, "animal": None}
+  case_42 = {"etat": Contenu.PROIE, "animal": {"age": 0, "jrs_gestation": 0, "energie": 10, "disponible": False}}
+  case_43 = {"etat": Contenu.PREDATEUR, "animal": {"age": 4, "jrs_gestation": 2, "energie": 6, "disponible": False}}
+  case_44 = {"etat": Contenu.VIDE, "animal": None}
+  
+  grille = {"matrice": [[case_11, case_12, case_13, case_14],
+                        [case_21, case_22, case_23, case_24],
+                        [case_31, case_32, case_33, case_34],
+                        [case_41, case_42, case_43, case_44]],
+          "nb_proies": 4,
+          "nb_predateurs": 4,
+          "nb_lignes": 4,
+          "nb_colonnes": 4}
+  
+  executer_cycle(grille)
    ```
   Sortie attendue : 
   ```python
-  {"age": 5, "jrs_gestation": 3, "energie": 20, "disponible": True}
+  grille = {"matrice": [[{"etat": Contenu.VIDE, "animal": None}, {"etat": Contenu.VIDE, "animal": None}, 
+                         {"etat": Contenu.VIDE, "animal": None}, {"etat": Contenu.PREDATEUR, "animal": {"age": 4, "jrs_gestation": 2, "energie": 6, "disponible": False}}],
+                        [{"etat": Contenu.VIDE, "animal": None}, {"etat": Contenu.VIDE, "animal": None}, 
+                         {"etat": Contenu.PROIE, "animal": {"age": 2, "jrs_gestation": 0, "energie": 8, "disponible": False}}, {"etat": Contenu.VIDE, "animal": None}],
+                        [{"etat": Contenu.VIDE, "animal": None}, {"etat": Contenu.VIDE, "animal": None}, 
+                         {"etat": Contenu.VIDE, "animal": None}, {"etat": Contenu.PREDATEUR, "animal": {"age": 2, "jrs_gestation": 1, "energie": 4, "disponible": False}}],
+                        [{"etat": Contenu.VIDE, "animal": None}, {"etat": Contenu.VIDE, "animal": None}, 
+                         {"etat": Contenu.PREDATEUR, "animal": {"age": 5, "jrs_gestation": 3, "energie": 5, "disponible": False}}, {"etat": Contenu.VIDE, "animal": None}]],
+        "nb_proies": 1,
+        "nb_predateurs": 3,
+        "nb_lignes": 4,
+        "nb_colonnes": 4}
   ```
   
-
-
-
 
 
 ## 8. Barème /20 <a name="bareme"></a>
