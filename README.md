@@ -647,8 +647,9 @@ Cette fonction cherche tous les voisins autour de la cellule (ligne, col) qui co
 ### 6.19. remplir_grille
 
 <p align="center">
-    <img src="/assets/Algo_1.eps" alt="remplir_grille" width="500">
+    <img src="assets/Algo_1.svg" alt="remplir_grille" width="500">
 </p>
+
 
 - **Entrée** : 
   - grille(dict): Une structure représentant la grille.
