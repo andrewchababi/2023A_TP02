@@ -690,28 +690,24 @@ Cette fonction parcourir chaque case de la grille et rendre tous les animaux dis
 - **Exemple** :
   ```python
  case_11 = {"etat": Contenu.PROIE, "animal": {"age": 1, "jrs_gestation": 0, "energie": 5, "disponible": False}}
-case_12 = {"etat": Contenu.PREDATEUR, "animal": {"age": 2, "jrs_gestation": 1, "energie": 4, "disponible": False}}
-case_21 = {"etat": Contenu.VIDE, "animal": None}
-case_22 = {"etat": Contenu.PROIE, "animal": {"age": 0, "jrs_gestation": 0, "energie": 6, "disponible": False}}
-
-grille = {
-    "matrice": [[case_11, case_12],
-                [case_21, case_22]],
-    "nb_proies": 2,
-    "nb_predateurs": 1,
-    "nb_lignes": 2,
-    "nb_colonnes": 2
-}
-
-rendre_animaux_disponibles(grille)
-
-   ```
+  case_12 = {"etat": Contenu.PREDATEUR, "animal": {"age": 2, "jrs_gestation": 1, "energie": 4, "disponible": False}}
+  case_21 = {"etat": Contenu.VIDE, "animal": None}
+  case_22 = {"etat": Contenu.PROIE, "animal": {"age": 0, "jrs_gestation": 0, "energie": 6, "disponible": False}}
+  
+  grille = {"matrice": [[case_11, case_12],
+                        [case_21, case_22]],
+            "nb_proies": 2,
+            "nb_predateurs": 1,
+            "nb_lignes": 2,
+            "nb_colonnes": 2}
+  
+  rendre_animaux_disponibles(grille)
+  ```
   Sortie attendue : 
   ```python
- case_11["animal"]["disponible"] = True
-case_12["animal"]["disponible"] = True
-case_22["animal"]["disponible"] = True
-
+  case_11["animal"]["disponible"] = True
+  case_12["animal"]["disponible"] = True
+  case_22["animal"]["disponible"] = True
   ```
   
 
@@ -723,39 +719,34 @@ case_22["animal"]["disponible"] = True
   - colonne(int): L'index de la colonne de la grille.
 - **Exemple** :
   ```python
-case_11 = {"etat": Contenu.PROIE, "animal": {"age": 2, "jrs_gestation": 0, "energie": 8, "disponible": True}}
-case_12 = {"etat": Contenu.VIDE, "animal": None}
-case_21 = {"etat": Contenu.VIDE, "animal": None}
-case_22 = {"etat": Contenu.VIDE, "animal": None}
-
-grille = {
-    "matrice": [[case_11, case_12],
-                [case_21, case_22]],
-    "nb_proies": 1,
-    "nb_predateurs": 0,
-    "nb_lignes": 2,
-    "nb_colonnes": 2
-}
-
-ligne = 0
-colonne = 0
-animal = case_11["animal"]
-
-deplacer_animal(grille, ligne, colonne, animal)
-
-   ```
+  case_11 = {"etat": Contenu.PROIE, "animal": {"age": 2, "jrs_gestation": 0, "energie": 8, "disponible": True}}
+  case_12 = {"etat": Contenu.VIDE, "animal": None}
+  case_21 = {"etat": Contenu.VIDE, "animal": None}
+  case_22 = {"etat": Contenu.VIDE, "animal": None}
+  
+  grille = {"matrice": [[case_11, case_12],
+                        [case_21, case_22]],
+            "nb_proies": 1,
+            "nb_predateurs": 0,
+            "nb_lignes": 2,
+            "nb_colonnes": 2}
+  
+  ligne = 0
+  colonne = 0
+  animal = case_11["animal"]
+  
+  deplacer_animal(grille, ligne, colonne, animal)
+  ```
   Sortie attendue : 
   ```python
-grille["matrice"][0][0]["etat"] = Contenu.VIDE
-grille["matrice"][0][0]["animal"] = None
-
-# Une des cellules voisines, par exemple:
-grille["matrice"][0][1]["etat"] = Contenu.PROIE
-grille["matrice"][0][1]["animal"] = {"age": 2, "jrs_gestation": 0, "energie": 8, "disponible": False}
-
+  grille["matrice"][0][0]["etat"] = Contenu.VIDE
+  grille["matrice"][0][0]["animal"] = None
+  
+  # Une des cellules voisines, par exemple:
+  grille["matrice"][0][1]["etat"] = Contenu.PROIE
+  grille["matrice"][0][1]["animal"] = {"age": 2, "jrs_gestation": 0, "energie": 8, "disponible": False}
   ```
   
-
 ### 7.3. executer_cycle_proie
 Cette fonction gère le cycle de vie d'une proie à une position donnée sur la grille.
   1. Vieillir l'animal. Si l'âge dépasse MAX_AGE_PROIE, le retirer de la grille et décrémenter le compteur de proies.
@@ -773,28 +764,27 @@ Cette fonction gère le cycle de vie d'une proie à une position donnée sur la 
   - colonne(int): L'index de la colonne de la grille.
 - **Exemple** :
   ```python
-case_11 = {"etat": Contenu.VIDE, "animal": None}
-case_12 = {"etat": Contenu.PROIE, "animal": {"age": 3, "jrs_gestation": 2, "energie": 10, "disponible": True}}
-case_21 = {"etat": Contenu.VIDE, "animal": None}
-case_22 = {"etat": Contenu.VIDE, "animal": None}
-
-grille = {
-    "matrice": [[case_11, case_12], 
-                [case_21, case_22]],
-    "nb_proies": 1,
-    "nb_predateurs": 0,
-    "nb_lignes": 2,
-    "nb_colonnes": 2
-}
-executer_cycle_proie(grille, 0, 1, case_12["animal"])
+  case_11 = {"etat": Contenu.VIDE, "animal": None}
+  case_12 = {"etat": Contenu.PROIE, "animal": {"age": 3, "jrs_gestation": 2, "energie": 10, "disponible": True}}
+  case_21 = {"etat": Contenu.VIDE, "animal": None}
+  case_22 = {"etat": Contenu.VIDE, "animal": None}
+  
+  grille = {"matrice": [[case_11, case_12], 
+                        [case_21, case_22]],
+            "nb_proies": 1,
+            "nb_predateurs": 0,
+            "nb_lignes": 2,
+            "nb_colonnes": 2
+  }
+  executer_cycle_proie(grille, 0, 1, case_12["animal"])
 
    ```
   Sortie attendue : 
   ```python
-# On s'attend à ce que la proie se reproduise et place son bébé dans une case voisine, par exemple case_11.
-case_11["etat"] = Contenu.PROIE
-case_11["animal"] = {"age": 0, "jrs_gestation": 0, "energie": 10, "disponible": False}
-grille["nb_proies"] = 2
+  # On s'attend à ce que la proie se reproduise et place son bébé dans une case voisine, par exemple case_11.
+  case_11["etat"] = Contenu.PROIE
+  case_11["animal"] = {"age": 0, "jrs_gestation": 0, "energie": 10, "disponible": False}
+  grille["nb_proies"] = 2
   ```
   
 
@@ -813,33 +803,31 @@ Cette fonction gère le cycle de vie d'un prédateur à une position donnée sur
   - case (dict)
 - **Exemple** :
   ```python
- case_11 = {"etat": Contenu.VIDE, "animal": None}
-case_12 = {"etat": Contenu.PROIE, "animal": creer_animal()}
-case_21 = {"etat": Contenu.VIDE, "animal": None}
-case_22 = {"etat": Contenu.PREDATEUR, "animal": creer_animal(age=NB_JRS_PUBERTE_PRED + 1, energie=2, jrs_gestation=NB_JRS_GESTATION_PRED + 1)}
-
-grille = {
-    "matrice": [[case_11, case_12],
-                [case_21, case_22]],
-    "nb_proies": 1,
-    "nb_predateurs": 1,
-    "nb_lignes": 2,
-    "nb_colonnes": 2
-}
-
-ligne = 1
-colonne = 1
-animal = grille["matrice"][ligne][colonne]["animal"]
-
-executer_cycle_predateur(grille, ligne, colonne, animal)
+  case_11 = {"etat": Contenu.VIDE, "animal": None}
+  case_12 = {"etat": Contenu.PROIE, "animal": creer_animal()}
+  case_21 = {"etat": Contenu.VIDE, "animal": None}
+  case_22 = {"etat": Contenu.PREDATEUR, "animal": creer_animal(age=NB_JRS_PUBERTE_PRED + 1, energie=2, jrs_gestation=NB_JRS_GESTATION_PRED + 1)}
+  
+  grille = {"matrice": [[case_11, case_12],
+                        [case_21, case_22]],
+            "nb_proies": 1,
+            "nb_predateurs": 1,
+            "nb_lignes": 2,
+            "nb_colonnes": 2}
+  
+  ligne = 1
+  colonne = 1
+  animal = grille["matrice"][ligne][colonne]["animal"]
+  
+  executer_cycle_predateur(grille, ligne, colonne, animal)
 
    ```
   Sortie attendue : 
   ```python
   grille["matrice"][0][1] == {"etat": Contenu.PREDATEUR, "animal": ...}  # Prédateur ayant mangé la proie
-grille["matrice"][1][1] == {"etat": Contenu.PREDATEUR, "animal": ...}  # Nouveau prédateur né
-grille["nb_proies"] == 0
-grille["nb_predateurs"] == 2
+  grille["matrice"][1][1] == {"etat": Contenu.PREDATEUR, "animal": ...}  # Nouveau prédateur né
+  grille["nb_proies"] == 0
+  grille["nb_predateurs"] == 2
   ```
   
 
