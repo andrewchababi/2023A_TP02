@@ -612,6 +612,10 @@ Cette fonction ajuster la position (ligne, colonne) pour une grille circulaire e
 
 ### 6.18. choix_voisin_autour
 Cette fonction cherche tous les voisins autour de la cellule (ligne, col) qui correspondent au "contenu" donné.
+<p align="center">
+    <img src="assets/Algo_5.svg" alt="choix_voisin_autour">
+</p>
+
 - **Entrée** : 
   - grille(dict): Une structure représentant la grille.
   - etat(CONTENUE): L'état à mettre à jour (proie, prédateur ou vide).
@@ -647,7 +651,7 @@ Cette fonction cherche tous les voisins autour de la cellule (ligne, col) qui co
 ### 6.19. remplir_grille
 
 <p align="center">
-    <img src="assets/Algo_1.svg" alt="remplir_grille" width="500">
+    <img src="assets/Algo_1.svg" alt="remplir_grille">
 </p>
 
 
@@ -714,7 +718,11 @@ Cette fonction cherche tous les voisins autour de la cellule (ligne, col) qui co
   ```
   
 
-### 7.3. executer_cycle_predateur 
+### 7.3. executer_cycle_proie
+<p align="center">
+    <img src="assets/Algo_3.svg" alt="remplir_grille">
+</p>
+
 - **Entrée** : 
   - case (dict)
 - **Sortie** :
@@ -732,7 +740,11 @@ Cette fonction cherche tous les voisins autour de la cellule (ligne, col) qui co
   
 
 
-### 7.4. executer_cycle_proie
+### 7.4. executer_cycle_predateur 
+<p align="center">
+    <img src="assets/Algo_2.svg" alt="remplir_grille">
+</p>
+
 - **Entrée** : 
   - case (dict)
 - **Sortie** :
@@ -752,6 +764,10 @@ Cette fonction cherche tous les voisins autour de la cellule (ligne, col) qui co
 
 ### 7.5. executer_cycle
 Simule le passage d'un jour dans la grille. Les prédateurs peuvent manger les proies et les animaux peuvent se déplacer.
+<p align="center">
+    <img src="assets/Algo_4.svg" alt="remplir_grille">
+</p>
+
 - **Entrée** : 
   - case (dict)
 - **Sortie** :
