@@ -2,7 +2,7 @@
   <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Polytechnique_Montr%C3%A9al_logo.jpg" />
 </p>
 
-# TP01: Fondamentaux en Python - Données, Variables, Opérateurs et Interactions
+# TP02 : structure de contrôle et de données
 - [Directives particulières](#directives)
 - [Introduction](#Introduction)
 - [Objectifs](#Objectif)
@@ -612,6 +612,10 @@ Cette fonction ajuster la position (ligne, colonne) pour une grille circulaire e
 
 ### 6.18. choix_voisin_autour
 Cette fonction cherche tous les voisins autour de la cellule (ligne, col) qui correspondent au "contenu" donné.
+<p align="center">
+    <img src="assets/Algo_5.svg" alt="choix_voisin_autour">
+</p>
+
 - **Entrée** : 
   - grille(dict): Une structure représentant la grille.
   - etat(CONTENUE): L'état à mettre à jour (proie, prédateur ou vide).
@@ -647,7 +651,7 @@ Cette fonction cherche tous les voisins autour de la cellule (ligne, col) qui co
 ### 6.19. remplir_grille
 
 <p align="center">
-    <img src="assets/Algo_1.svg" alt="remplir_grille" width="500">
+    <img src="assets/Algo_1.svg" alt="remplir_grille">
 </p>
 
 
@@ -681,110 +685,253 @@ Cette fonction cherche tous les voisins autour de la cellule (ligne, col) qui co
 
 ## 7. Module simulation <a name="simulation"></a>
 ### 7.1. rendre_animaux_disponibles
+Cette fonction parcourir chaque case de la grille et rendre tous les animaux disponibles pour la prochaine itération.
 - **Entrée** : 
-  - case (dict)
-- **Sortie** :
-  - L'animal dans la case
+  - grille(dict): Une structure représentant la grille.
 - **Exemple** :
   ```python
-  animal = creer_animal(5, 3, 20, True)
-  case = creer_case(Contenu.PROIE, animal)
-  obtenir_animal(case)
-   ```
+ case_11 = {"etat": Contenu.PROIE, "animal": {"age": 1, "jrs_gestation": 0, "energie": 5, "disponible": False}}
+  case_12 = {"etat": Contenu.PREDATEUR, "animal": {"age": 2, "jrs_gestation": 1, "energie": 4, "disponible": False}}
+  case_21 = {"etat": Contenu.VIDE, "animal": None}
+  case_22 = {"etat": Contenu.PROIE, "animal": {"age": 0, "jrs_gestation": 0, "energie": 6, "disponible": False}}
+  
+  grille = {"matrice": [[case_11, case_12],
+                        [case_21, case_22]],
+            "nb_proies": 2,
+            "nb_predateurs": 1,
+            "nb_lignes": 2,
+            "nb_colonnes": 2}
+  
+  rendre_animaux_disponibles(grille)
+  ```
   Sortie attendue : 
   ```python
-  {"age": 5, "jrs_gestation": 3, "energie": 20, "disponible": True}
+  case_11["animal"]["disponible"] = True
+  case_12["animal"]["disponible"] = True
+  case_22["animal"]["disponible"] = True
   ```
   
 
 ### 7.2. deplacer_animal
 - **Entrée** : 
-  - case (dict)
-- **Sortie** :
-  - L'animal dans la case
+   - grille(dict): Une structure représentant la grille.
+  - animal (dict): un dictionnaire représentant un animal
+  - ligne(int): L'index de la ligne de la grille.
+  - colonne(int): L'index de la colonne de la grille.
 - **Exemple** :
   ```python
-  animal = creer_animal(5, 3, 20, True)
-  case = creer_case(Contenu.PROIE, animal)
-  obtenir_animal(case)
+  case_11 = {"etat": Contenu.PROIE, "animal": {"age": 2, "jrs_gestation": 0, "energie": 8, "disponible": True}}
+  case_12 = {"etat": Contenu.VIDE, "animal": None}
+  case_21 = {"etat": Contenu.VIDE, "animal": None}
+  case_22 = {"etat": Contenu.VIDE, "animal": None}
+  
+  grille = {"matrice": [[case_11, case_12],
+                        [case_21, case_22]],
+            "nb_proies": 1,
+            "nb_predateurs": 0,
+            "nb_lignes": 2,
+            "nb_colonnes": 2}
+  
+  ligne = 0
+  colonne = 0
+  animal = case_11["animal"]
+  
+  deplacer_animal(grille, ligne, colonne, animal)
+  ```
+  Sortie attendue : 
+  ```python
+  grille["matrice"][0][0]["etat"] = Contenu.VIDE
+  grille["matrice"][0][0]["animal"] = None
+  
+  # Une des cellules voisines, par exemple:
+  grille["matrice"][0][1]["etat"] = Contenu.PROIE
+  grille["matrice"][0][1]["animal"] = {"age": 2, "jrs_gestation": 0, "energie": 8, "disponible": False}
+  ```
+  
+### 7.3. executer_cycle_proie
+Cette fonction gère le cycle de vie d'une proie à une position donnée sur la grille.
+  1. Vieillir l'animal. Si l'âge dépasse MAX_AGE_PROIE, le retirer de la grille et décrémenter le compteur de proies.
+  2. Si l'animal est en âge de se reproduire et a attendu suffisamment (NB_JRS_GESTATION_PROIE), tenter de générer un nouveau bébé proie. Pour ce faire, chercher un voisin vide autour de la proie. Si un voisin est trouvé, créer un bébé proie et le placer dans la grille.
+  3. Sinon, déplacer l'animal vers une case vide à proximité.
+     
+<p align="center">
+    <img src="assets/Algo_2.svg" alt="remplir_grille">
+</p>
+
+- **Entrée** : 
+   - grille(dict): Une structure représentant la grille.
+  - animal (dict): un dictionnaire représentant un animal
+  - ligne(int): L'index de la ligne de la grille.
+  - colonne(int): L'index de la colonne de la grille.
+- **Exemple** :
+  ```python
+  case_11 = {"etat": Contenu.VIDE, "animal": None}
+  case_12 = {"etat": Contenu.PROIE, "animal": {"age": 3, "jrs_gestation": 2, "energie": 10, "disponible": True}}
+  case_21 = {"etat": Contenu.VIDE, "animal": None}
+  case_22 = {"etat": Contenu.VIDE, "animal": None}
+  
+  grille = {"matrice": [[case_11, case_12], 
+                        [case_21, case_22]],
+            "nb_proies": 1,
+            "nb_predateurs": 0,
+            "nb_lignes": 2,
+            "nb_colonnes": 2
+  }
+  executer_cycle_proie(grille, 0, 1, case_12["animal"])
+
    ```
   Sortie attendue : 
   ```python
-  {"age": 5, "jrs_gestation": 3, "energie": 20, "disponible": True}
+  # On s'attend à ce que la proie se reproduise et place son bébé dans une case voisine, par exemple case_11.
+  case_11["etat"] = Contenu.PROIE
+  case_11["animal"] = {"age": 0, "jrs_gestation": 0, "energie": 10, "disponible": False}
+  grille["nb_proies"] = 2
   ```
   
 
-### 7.3. executer_cycle_predateur 
+
+### 7.4. executer_cycle_predateur 
+Cette fonction gère le cycle de vie d'un prédateur à une position donnée sur la grille.
+  1. Vieillir l'animal. Si l'âge dépasse MAX_AGE_PRED ou si le prédateur manque d'énergie (énergie < MIN_ENERGIE), le retirer de la grille et décrémenter le compteur de prédateurs.
+  2. Si le prédateur peut manger une proie dans une case voisine, le faire en le déplaçant dans la case de la proie et en incrémentant son énergie de AJOUT_ENERGIE (n'oubliez pas de décrémenter le compteur de proies). Après avoir mangé, si le prédateur est en âge de se reproduire et a attendu suffisamment (NB_JRS_GESTATION_PRED), tenter de générer un nouveau bébé prédateur. Pour ce faire, chercher un voisin vide autour du prédateur. Si un voisin est trouvé, créer un bébé prédateur et le placer dans la grille.
+  3. Sinon, déplacer l'animal vers une case vide à proximité et décrémenter son énergie de 1.
+     
+<p align="center">
+    <img src="assets/Algo_3.svg" alt="remplir_grille">
+</p>
+
 - **Entrée** : 
-  - case (dict)
-- **Sortie** :
-  - L'animal dans la case
+  - grille(dict): Une structure représentant la grille.
+  - animal (dict): un dictionnaire représentant un animal
+  - ligne(int): L'index de la ligne de la grille.
+  - colonne(int): L'index de la colonne de la grille.
 - **Exemple** :
   ```python
-  animal = creer_animal(5, 3, 20, True)
-  case = creer_case(Contenu.PROIE, animal)
-  obtenir_animal(case)
-   ```
-  Sortie attendue : 
-  ```python
-  {"age": 5, "jrs_gestation": 3, "energie": 20, "disponible": True}
-  ```
+  case_11 = {"etat": Contenu.VIDE, "animal": None}
+  case_12 = {"etat": Contenu.PROIE, "animal": creer_animal()}
+  case_21 = {"etat": Contenu.VIDE, "animal": None}
+  case_22 = {"etat": Contenu.PREDATEUR, "animal": creer_animal(age=NB_JRS_PUBERTE_PRED + 1, energie=2, jrs_gestation=NB_JRS_GESTATION_PRED + 1)}
   
+  grille = {"matrice": [[case_11, case_12],
+                        [case_21, case_22]],
+            "nb_proies": 1,
+            "nb_predateurs": 1,
+            "nb_lignes": 2,
+            "nb_colonnes": 2}
+  
+  ligne = 1
+  colonne = 1
+  animal = grille["matrice"][ligne][colonne]["animal"]
+  
+  executer_cycle_predateur(grille, ligne, colonne, animal)
 
-
-### 7.4. executer_cycle_proie
-- **Entrée** : 
-  - case (dict)
-- **Sortie** :
-  - L'animal dans la case
-- **Exemple** :
-  ```python
-  animal = creer_animal(5, 3, 20, True)
-  case = creer_case(Contenu.PROIE, animal)
-  obtenir_animal(case)
    ```
   Sortie attendue : 
   ```python
-  {"age": 5, "jrs_gestation": 3, "energie": 20, "disponible": True}
+  grille["matrice"][0][1] == {"etat": Contenu.PREDATEUR, "animal": ...}  # Prédateur ayant mangé la proie
+  grille["matrice"][1][1] == {"etat": Contenu.PREDATEUR, "animal": ...}  # Nouveau prédateur né
+  grille["nb_proies"] == 0
+  grille["nb_predateurs"] == 2
   ```
   
 
 
 ### 7.5. executer_cycle
-Simule le passage d'un jour dans la grille. Les prédateurs peuvent manger les proies et les animaux peuvent se déplacer.
+Cette fonction siimule le passage d'un jour dans la grille. Les prédateurs peuvent manger les proies et les animaux peuvent se déplacer. Pour ce faire marquer tous les animaux comme disponibles pour ce cycle, puis parcourir la grille pour exécuter la bonne procédure du cycle de vie pour chaque animal. Il est nécessaires d'utiliser au minimum les fonctions "rendre_animaux_disponibles", "executer_cycle_proie" et "executer_cycle_predateur".
+<p align="center">
+    <img src="assets/Algo_4.svg" alt="remplir_grille">
+</p>
+
 - **Entrée** : 
-  - case (dict)
-- **Sortie** :
-  - L'animal dans la case
+  - grille(dict): Une structure représentant la grille.
 - **Exemple** :
   ```python
-  animal = creer_animal(5, 3, 20, True)
-  case = creer_case(Contenu.PROIE, animal)
-  obtenir_animal(case)
+  case_11 = {"etat": Contenu.VIDE, "animal": None}
+  case_12 = {"etat": Contenu.PROIE, "animal": {"age": 1, "jrs_gestation": 0, "energie": 10, "disponible": False}}
+  case_13 = {"etat": Contenu.VIDE, "animal": None}
+  case_14 = {"etat": Contenu.PREDATEUR, "animal": {"age": 3, "jrs_gestation": 1, "energie": 7, "disponible": False}}
+  
+  case_21 = {"etat": Contenu.PREDATEUR, "animal": {"age": 2, "jrs_gestation": 1, "energie": 8, "disponible": False}}
+  case_22 = {"etat": Contenu.VIDE, "animal": None}
+  case_23 = {"etat": Contenu.PROIE, "animal": {"age": 1, "jrs_gestation": 0, "energie": 9, "disponible": False}}
+  case_24 = {"etat": Contenu.VIDE, "animal": None}
+  
+  case_31 = {"etat": Contenu.PROIE, "animal": {"age": 0, "jrs_gestation": 0, "energie": 10, "disponible": False}}
+  case_32 = {"etat": Contenu.VIDE, "animal": None}
+  case_33 = {"etat": Contenu.VIDE, "animal": None}
+  case_34 = {"etat": Contenu.PREDATEUR, "animal": {"age": 1, "jrs_gestation": 0, "energie": 5, "disponible": False}}
+  
+  case_41 = {"etat": Contenu.VIDE, "animal": None}
+  case_42 = {"etat": Contenu.PROIE, "animal": {"age": 0, "jrs_gestation": 0, "energie": 10, "disponible": False}}
+  case_43 = {"etat": Contenu.PREDATEUR, "animal": {"age": 4, "jrs_gestation": 2, "energie": 6, "disponible": False}}
+  case_44 = {"etat": Contenu.VIDE, "animal": None}
+  
+  grille = {"matrice": [[case_11, case_12, case_13, case_14],
+                        [case_21, case_22, case_23, case_24],
+                        [case_31, case_32, case_33, case_34],
+                        [case_41, case_42, case_43, case_44]],
+          "nb_proies": 4,
+          "nb_predateurs": 4,
+          "nb_lignes": 4,
+          "nb_colonnes": 4}
+  
+  executer_cycle(grille)
    ```
   Sortie attendue : 
   ```python
-  {"age": 5, "jrs_gestation": 3, "energie": 20, "disponible": True}
+  grille = {"matrice": [[{"etat": Contenu.VIDE, "animal": None}, {"etat": Contenu.VIDE, "animal": None}, 
+                         {"etat": Contenu.VIDE, "animal": None}, {"etat": Contenu.PREDATEUR, "animal": {"age": 4, "jrs_gestation": 2, "energie": 6, "disponible": False}}],
+                        [{"etat": Contenu.VIDE, "animal": None}, {"etat": Contenu.VIDE, "animal": None}, 
+                         {"etat": Contenu.PROIE, "animal": {"age": 2, "jrs_gestation": 0, "energie": 8, "disponible": False}}, {"etat": Contenu.VIDE, "animal": None}],
+                        [{"etat": Contenu.VIDE, "animal": None}, {"etat": Contenu.VIDE, "animal": None}, 
+                         {"etat": Contenu.VIDE, "animal": None}, {"etat": Contenu.PREDATEUR, "animal": {"age": 2, "jrs_gestation": 1, "energie": 4, "disponible": False}}],
+                        [{"etat": Contenu.VIDE, "animal": None}, {"etat": Contenu.VIDE, "animal": None}, 
+                         {"etat": Contenu.PREDATEUR, "animal": {"age": 5, "jrs_gestation": 3, "energie": 5, "disponible": False}}, {"etat": Contenu.VIDE, "animal": None}]],
+        "nb_proies": 1,
+        "nb_predateurs": 3,
+        "nb_lignes": 4,
+        "nb_colonnes": 4}
   ```
   
 
 
-### 7.6. simulation_est_terminee
-
-
-## 8. Barème /20 <a name="bareme"></a>
+## 8. Barème /100 <a name="bareme"></a>
 
 |**Nom des fonctions**|**Nombre de points attribuer**|
 | :- | :- |
-|*Exercice 01*|0.5|
-|*Exercice 02*|1.0|
-|*Exercice 03*|1.5|
-|*Exercice 04*|4.0|
-|*Exercice 05*|1.5|
-|*Exercice 06*|3.0|
-|*Exercice 07*|2.5|
-|*Exercice 08*|2.0|
-|*Exercice 09*|4.0|
+|creer_animal
+|obtenir_age                               |  |
+|obtenir_jours_gestation                   |  |
+|obtenir_energie                           |  |
+|obtenir_disponibilite                     |  |
+|incrementer_age                           |  |
+|definir_jours_gestation                   |  |
+|ajouter_energie                           |  |
+|definir_disponibilite                     |  |
+|creer_case                                |  |
+|obtenir_etat                              |  |
+|obtenir_animal                            |  |
+|definir_etat                              |  |
+|definir_animal                            |  |
+|creer_grille                              |  |
+|obtenir_case                              |  |
+|definir_case                              |  |
+|vider_case                                |  |
+|obtenir_population                        |  |
+|obtenir_dimensions                        |  |
+|incrementer_nb_proies                     |  |
+|decrementer_nb_proies                     |  |
+|incrementer_nb_predateurs                 |  |
+|decrementer_nb_predateurs                 |  |
+|check_nb_proies                           |  |
+|ajuster_position_pour_grille_circulaire   |  |
+|choix_voisin_autour                       |  |
+|remplir_grille                            |  |
+|rendre_animaux_disponibles                |  |
+|deplacer_animal                           |  |
+|executer_cycle_proie                      |  |
+|executer_cycle_predateur                  |  |
+|executer_cycle                            |  |
 
 ## Annexe: Guide et normes de codage <a name="annexe"></a>
 - [Le guide maison](https://github.com/INF1007-Gabarits/Guide-codage-python) de normes supplémentaires à respecter
