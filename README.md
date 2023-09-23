@@ -2,7 +2,7 @@
   <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Polytechnique_Montr%C3%A9al_logo.jpg" />
 </p>
 
-# TP01: Fondamentaux en Python - Données, Variables, Opérateurs et Interactions
+# TP02 : structure de contrôle et de données
 - [Directives particulières](#directives)
 - [Introduction](#Introduction)
 - [Objectifs](#Objectif)
