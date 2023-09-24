@@ -265,7 +265,7 @@ Cette fonction permet de récupérer l'animal présent dans une case donnée.
   ```
 
 
-### 6.4. definir_etat
+### 6.4. definir_case
 Cette fonction définit l'état d'une case donnée.
 - **Entrée** : 
   - case (dict): un dictionnaire représentant la case
@@ -274,7 +274,7 @@ Cette fonction définit l'état d'une case donnée.
   ```python
   animal = creer_animal(5, 3, 20, True)
   case = creer_case(Contenu.VIDE, animal)
-  definir_etat(case, Contenu.PROIE)
+  definir_case(case, )
    ```
   Sortie attendue : 
   ```python
