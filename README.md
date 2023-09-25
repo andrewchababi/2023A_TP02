@@ -613,7 +613,7 @@ Cette fonction ajuster la position (ligne, colonne) pour une grille circulaire e
 ### 6.18. choix_voisin_autour
 Cette fonction cherche tous les voisins autour de la cellule (ligne, col) qui correspondent au "contenu" donné.
 <p align="center">
-    <img src="assets/Algo_5.svg" alt="choix_voisin_autour">
+    <img src="assets/Algo_1.svg" alt="choix_voisin_autour">
 </p>
 
 - **Entrée** : 
@@ -651,7 +651,7 @@ Cette fonction cherche tous les voisins autour de la cellule (ligne, col) qui co
 ### 6.19. remplir_grille
 
 <p align="center">
-    <img src="assets/Algo_1.svg" alt="remplir_grille">
+    <img src="assets/Algo_2.svg" alt="remplir_grille">
 </p>
 
 
@@ -755,7 +755,7 @@ Cette fonction gère le cycle de vie d'une proie à une position donnée sur la 
   3. Sinon, déplacer l'animal vers une case vide à proximité.
      
 <p align="center">
-    <img src="assets/Algo_2.svg" alt="remplir_grille">
+    <img src="assets/Algo_3.svg" alt="remplir_grille">
 </p>
 
 - **Entrée** : 
@@ -797,7 +797,7 @@ Cette fonction gère le cycle de vie d'un prédateur à une position donnée sur
   3. Sinon, déplacer l'animal vers une case vide à proximité et décrémenter son énergie de 1.
      
 <p align="center">
-    <img src="assets/Algo_3.svg" alt="remplir_grille">
+    <img src="assets/Algo_4.svg" alt="remplir_grille">
 </p>
 
 - **Entrée** : 
@@ -839,7 +839,7 @@ Cette fonction gère le cycle de vie d'un prédateur à une position donnée sur
 ### 7.5. executer_cycle
 Cette fonction siimule le passage d'un jour dans la grille. Les prédateurs peuvent manger les proies et les animaux peuvent se déplacer. Pour ce faire marquer tous les animaux comme disponibles pour ce cycle, puis parcourir la grille pour exécuter la bonne procédure du cycle de vie pour chaque animal. Il est nécessaires d'utiliser au minimum les fonctions "rendre_animaux_disponibles", "executer_cycle_proie" et "executer_cycle_predateur".
 <p align="center">
-    <img src="assets/Algo_4.svg" alt="remplir_grille">
+    <img src="assets/Algo_5.svg" alt="remplir_grille">
 </p>
 
 - **Entrée** : 
