@@ -1,5 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="612.0768pt" height="370.6563pt" viewBox="0 0 612.0768 370.6563">
 <g>
+<style>
+    svg  { background-color:#ffffff }
+</style>
 <path transform="matrix(1,0,0,-1,-114.527378,-191.13184)" stroke-width=".7967" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#000000" d="M115.004-191.535H726.773"/>
 <text xml:space="preserve" transform="matrix(1 0 0 1 -114.527378 -191.13184)" font-size="9.958844" font-family="CMBX10" font-weight="bold"><tspan y="200.84125" x="122.47456 131.1288 134.30567 140.032 145.75833 150.46887 153.64574 158.09734 164.48096 174.02153 183.08408 192.63462">Algorithme4:</tspan></text>
 <text xml:space="preserve" transform="matrix(1 0 0 1 -114.527378 -191.13184)" font-size="9.958844" font-family="CMR10"><tspan y="200.84125" x="199.13773 205.90975 210.88916 211.168 215.58972 220.01145 225.5386 229.43251 232.19112 237.17053 246.02394 251.5511 254.30971 259.83686 268.71018 273.1319 278.38023 282.80195 285.59043 293.32844 298.8556 306.60359 312.13075 315.76573 316.0446 320.4663 325.99348 330.9729 334.83695 339.25868 344.8157">Ex&#x00b4;ecutiond&#x2019;uncycledepr&#x00b4;edateur</tspan></text>
