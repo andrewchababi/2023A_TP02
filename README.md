@@ -913,8 +913,26 @@ Cette fonction est une fonction d'orchestration qui parcourt l'ensemble de la gr
         "nb_lignes": 4,
         "nb_colonnes": 4}
   ```
-  
 
+
+### 7.6. simulation_est_terminee
+Cette fonction vérifie si une simulation est terminée. La simulation est considérée comme terminée si toutes les proies ou tous les prédateurs ont été éliminés de la grille. La fonction retourne True dans ce cas, et False sinon.
+- **Entrée** : 
+  - grille(dict): Une structure représentant la grille.
+- **Sortie** :
+  - Un booléen pour vérifier si la simulation est terminée.
+
+- **Exemple** :
+  ```python
+  grille = creer_grille(2, 2)
+  incrementer_nb_proies(grille)
+  print(simulation_est_terminee(grille))
+  ```
+
+  Sortie attendue : 
+  ```python
+  True
+  ```
 
 ## 8. Barème /100 <a name="bareme"></a>
 
@@ -930,7 +948,7 @@ Cette fonction est une fonction d'orchestration qui parcourt l'ensemble de la gr
 |ajouter_energie                           | 1  |
 |definir_disponibilite                     | 1  |
 |creer_case                                | 2  |
-|creer_grille                              | 3  |
+|creer_grille                              | 4  |
 |obtenir_case                              | 1  |
 |obtenir_etat                              | 1  |
 |obtenir_animal                            | 1  |
@@ -949,9 +967,10 @@ Cette fonction est une fonction d'orchestration qui parcourt l'ensemble de la gr
 |remplir_grille                            | 10 |
 |rendre_animaux_disponibles                | 8  |
 |deplacer_animal                           | 8  |
-|executer_cycle_proie                      | 14 |
+|executer_cycle_proie                      | 12 |
 |executer_cycle_predateur                  | 14 |
 |executer_cycle                            | 8  |
+|simulation_est_terminee                   | 1  |
 
 ## Annexe: Guide et normes de codage <a name="annexe"></a>
 - [Le guide maison](https://github.com/INF1007-Gabarits/Guide-codage-python) de normes supplémentaires à respecter
