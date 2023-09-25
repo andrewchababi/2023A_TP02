@@ -102,19 +102,30 @@ def choix_voisin_autour(grille, ligne, col, contenu: Contenu):
     #       Si le contenu n'est pas VIDE, le voisin doit être disponible (voir la fonction obtenir_disponibilite).
     # Indice: Utiliser la fonction "ajuster_position_pour_grille_circulaire" pour ajuster les positions des voisins qui sont en dehors de la grille.
     pass
+
+
+def remplir_grille(grille, pourcentage_proie, pourcentage_predateur):
+    # TODO: Obtenir les dimensions de la grille.
     
+    # TODO: Calculer le nombre total de cases dans la grille.
     
-def remplir_grille(grille, pourcentage_remplissage_total):
-    # TODO: Obtenir les dimensions de la grille et calculer le nombre total de cases (nb_cases).
-    # Utiliser la fonction "obtenir_dimensions" pour obtenir nb_lig et nb_col.
-
-    # TODO: Calculer le nombre de proies et de prédateurs à placer dans la grille.
-    # Utiliser les constantes POURCENTAGE_PROIES, MAX_AGE_PROIE, NB_JRS_GESTATION_PROIE et NB_JRS_PUBERTE_PROIE
-    # pour les proies, et les équivalents pour les prédateurs.
-
-    # TODO: Remplir la grille avec le nombre calculé de proies.
-    # Utiliser les fonctions "creer_animal", "definit_etat", "definir_animal", et "incrementer_nb_proies".
-
-    # TODO: Remplir la grille avec le nombre calculé de prédateurs.
-    # Utiliser les fonctions "creer_animal", "definit_etat", "definir_animal", et "incrementer_nb_predateurs".
+    # TODO: Calculer le nombre de proies à placer dans la grille.
+    
+    # TODO: Calculer le nombre de prédateurs à placer dans la grille.
+    
+    # TODO: Générer et mélanger aléatoirement la liste de toutes les positions possibles.
+    
+    # TODO: Placer les proies dans la grille.
+    # Utilisez MAX_AGE_PROIE pour générer un âge aléatoire entre 0 et l'âge maximum de la proie.
+    # Utilisez NB_JRS_GESTATION_PROIE et NB_JRS_PUBERTE_PROIE pour déterminer la période de gestation si la proie est en âge de procréer.
+    
+    # TODO: Mettre à jour le compteur du nombre de proies.
+    
+    # TODO: Placer les prédateurs dans la grille.
+    # Utilisez MAX_AGE_PRED pour générer un âge aléatoire entre 0 et l'âge maximum du prédateur.
+    # Utilisez NB_JRS_GESTATION_PRED et NB_JRS_PUBERTE_PRED pour déterminer la période de gestation si le prédateur est en âge de procréer.
+    # Utilisez AJOUT_ENERGIE pour initialiser la quantité d'énergie du prédateur.
+    
+    # TODO: Mettre à jour le compteur du nombre de prédateurs.
+    
     pass
