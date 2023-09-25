@@ -162,8 +162,6 @@ Cette fonction permet de définir les jours de gestation d'un animal. Elle serai
 - **Entrée** : 
   - animal(dict, défaut=None): un dictionnaire représentant l'animal
   - jours (int) : Le nombre de jours à définir pour la gestation de l'animal.
-- **Sortie** :
-  - un dictionnaire représentant la case
 - **Exemple** :
   ```python
   animal = creer_animal(5, 50, 20, True)
@@ -179,8 +177,6 @@ Elle sert à augmenter la quantité d'énergie de l'animal d'une quantité spéc
 - **Entrée** : 
   - animal(dict, défaut=None): un dictionnaire représentant l'animal
   - quantite (int) : La quantité d'énergie à ajouter à l'animal.
-- **Sortie** :
-  - un dictionnaire représentant la case
 - **Exemple** :
   ```python
   animal = creer_animal(5, 50, 20, True)
@@ -196,8 +192,6 @@ Cette fonction permet de définir si un animal est disponible au déplacement ou
 - **Entrée** : 
   - animal(dict, défaut=None): un dictionnaire représentant l'animal
   - disponibilite (bool) : La disponibilité à définir pour l'animal (True signifie qu'il est disponible, False qu'il ne l'est pas). 
-- **Sortie** :
-  - un dictionnaire représentant la case
 - **Exemple** :
   ```python
   animal = creer_animal(5, 50, 20, True)
@@ -215,7 +209,7 @@ Cette fonction permet de définir si un animal est disponible au déplacement ou
 Cette fonction crée une nouvelle case (comme dans une grille) avec un état spécifique (p.ex. si la case contient une proie, un prédateur ou est vide) et éventuellement un animal.
 - **Entrée** : 
   - animal(dict, défaut=None): un dictionnaire représentant l'animal
-  - etat(CONTENUE): L'état de la case (proie, prédateur ou vide).
+  - etat(Contenu): L'état de la case (proie, prédateur ou vide).
 - **Sortie** :
   - un dictionnaire représentant la case
 - **Exemple** :
@@ -228,77 +222,7 @@ Cette fonction crée une nouvelle case (comme dans une grille) avec un état sp�
   {"etat": Contenu.PROIE, "animal": {"age": 5, "jrs_gestation": 3, "energie": 20, "disponible": True}}
   ```
 
-### 6.2. obtenir_etat
-Cette fonction renvoie l'état d'une case donnée (par exemple, si la case est vide ou contient une proie).
-- **Entrée** : 
-  - case (dict): un dictionnaire représentant la case
-- **Sortie** :
-  - Contenu (l'état de la case, p.ex. Contenu.VIDE, Contenu.PROIE, ...)
-- **Exemple** :
-  ```python
-  animal = creer_animal(5, 3, 20, True)
-  case = creer_case(Contenu.PROIE, animal)
-  obtenir_etat(case)
-   ```
-  Sortie attendue : 
-  ```python
-  Contenu.PROIE
-  ```
-
-
-
-### 6.3. obtenir_animal
-Cette fonction permet de récupérer l'animal présent dans une case donnée.
-- **Entrée** : 
-  - case (dict): un dictionnaire représentant la case
-- **Sortie** :
-  - L'animal dans la case
-- **Exemple** :
-  ```python
-  animal = creer_animal(5, 3, 20, True)
-  case = creer_case(Contenu.PROIE, animal)
-  obtenir_animal(case)
-   ```
-  Sortie attendue : 
-  ```python
-  {"age": 5, "jrs_gestation": 3, "energie": 20, "disponible": True}
-  ```
-
-
-### 6.4. definir_case
-Cette fonction définit l'état d'une case donnée.
-- **Entrée** : 
-  - case (dict): un dictionnaire représentant la case
-  - etat(CONTENUE): L'état à mettre à jour (proie, prédateur ou vide).
-- **Exemple** :
-  ```python
-  animal = creer_animal(5, 3, 20, True)
-  case = creer_case(Contenu.VIDE, animal)
-  definir_case(case, )
-   ```
-  Sortie attendue : 
-  ```python
-  {"etat": Contenu.PROIE, "animal": {"age": 5, "jrs_gestation": 3, "energie": 20, "disponible": True}}
-  ```
-
-
-### 6.5. definir_animal
-Cette fonction est utilisée pour définir ou remplacer l'animal présent dans une case donnée.
-- **Entrée** : 
-  - case (dict): un dictionnaire représentant la case
-  - animal (dict): un dictionnaire représentant un animal
-- **Exemple** :
-  ```python
-  animal = creer_animal(5, 3, 20, True)
-  case = creer_case(Contenu.PROIE, None)
-  definir_animal(case, animal)
-   ```
-  Sortie attendue : 
-  ```python
-  {"etat": Contenu.PROIE, "animal": {"age": 5, "jrs_gestation": 3, "energie": 20, "disponible": True}}
-  ```
-
-### 6.6. creer_grille
+### 6.2. creer_grille
 Cette fonction crée une nouvelle grille avec des dimensions spécifiées et remplit chaque case avec l'état VIDE.  
 - **Entrée** : 
   - nb_ligne(int): Nombre de lignes de la grille.
@@ -320,16 +244,15 @@ Cette fonction crée une nouvelle grille avec des dimensions spécifiées et rem
             "nb_lignes": 2,
             "nb_colonnes": 2}
   ```
-  
-### 6.7. obtenir_case
+
+### 6.3. obtenir_case
 Cette fonction récupère une case spécifique dans une grille.
 - **Entrée** : 
   - grille(dict): Une structure représentant la grille.
-  - etat(CONTENUE): L'état à mettre à jour (proie, prédateur ou vide).
   - ligne(int): L'index de la ligne de la grille.
   - colonne(int): L'index de la colonne de la grille.
 - **Sortie** :
-  - L'animal dans la case
+  - La case à  la position
 - **Exemple** :
   ```python
   case_11 = {"etat": Contenu.PROIE, "animal": {"age": 1, "jrs_gestation": 0, "energie": 50, "disponible": True}}
@@ -347,11 +270,108 @@ Cette fonction récupère une case spécifique dans une grille.
   ```
   Sortie attendue : 
   ```python
-  case = {"age": 1, "jrs_gestation": 0, "energie": 50, "disponible": True}
+  case = {"etat": Contenu.PROIE, "animal": {"age": 1, "jrs_gestation": 0, "energie": 50, "disponible": True}
   ```
 
 
-### 6.8. definir_case
+
+### 6.4. obtenir_etat
+Cette fonction renvoie l'état d'une case donnée (par exemple, si la case est vide ou contient une proie).
+- **Entrée** : 
+  - grille(dict): Une structure représentant la grille.
+  - ligne(int): L'index de la ligne de la grille.
+  - colonne(int): L'index de la colonne de la grille.
+- **Sortie** :
+  - Contenu (l'état de la case, p.ex. Contenu.VIDE, Contenu.PROIE, ...)
+- **Exemple** :
+  ```python
+  case_11 = {"etat": Contenu.PROIE, "animal": {"age": 1, "jrs_gestation": 0, "energie": 50, "disponible": True}}
+  case_12 = {"etat": Contenu.VIDE, "animal": None}
+  case_21 = {"etat": Contenu.VIDE, "animal": None}
+  case_22 = {"etat": Contenu.PREDATEUR, "animal": {"age": 2, "jrs_gestation": 0, "energie": 40, "disponible": False}}
+  
+  grille = {"matrice": [[case_11, case_12],
+                        [case_21, case_22]],
+            "nb_proies": 1,
+            "nb_predateurs": 1,
+            "nb_lignes": 2,
+            "nb_colonnes": 2}
+  etat = obtenir_etat(grille, 0, 0)
+   ```
+  Sortie attendue : 
+  ```python
+  Contenu.PROIE
+  ```
+
+
+
+### 6.5. obtenir_animal
+Cette fonction permet de récupérer l'animal présent dans une case donnée.
+- **Entrée** : 
+  - grille(dict): Une structure représentant la grille.
+  - ligne(int): L'index de la ligne de la grille.
+  - colonne(int): L'index de la colonne de la grille.
+- **Sortie** :
+  - L'animal dans la case
+- **Exemple** :
+  ```python
+  case_11 = {"etat": Contenu.PROIE, "animal": {"age": 1, "jrs_gestation": 0, "energie": 50, "disponible": True}}
+  case_12 = {"etat": Contenu.VIDE, "animal": None}
+  case_21 = {"etat": Contenu.VIDE, "animal": None}
+  case_22 = {"etat": Contenu.PREDATEUR, "animal": {"age": 2, "jrs_gestation": 0, "energie": 40, "disponible": False}}
+  
+  grille = {"matrice": [[case_11, case_12],
+                        [case_21, case_22]],
+            "nb_proies": 1,
+            "nb_predateurs": 1,
+            "nb_lignes": 2,
+            "nb_colonnes": 2}
+  animal = obtenir_animal(grille, 0, 0)
+   ```
+  Sortie attendue : 
+  ```python
+  {"age": 1, "jrs_gestation": 0, "energie": 50, "disponible": True}
+  ```
+
+
+### 6.6. definir_animal
+Cette fonction est utilisée pour définir ou remplacer l'animal présent dans une case donnée.
+- **Entrée** : 
+  - grille(dict): Une structure représentant la grille.
+  - ligne(int): L'index de la ligne de la grille.
+  - colonne(int): L'index de la colonne de la grille.
+  - animal (dict): un dictionnaire représentant un animal
+- **Exemple** :
+  ```python
+  case_11 = {"etat": Contenu.PROIE, "animal": {"age": 1, "jrs_gestation": 0, "energie": 50, "disponible": True}}
+  case_12 = {"etat": Contenu.VIDE, "animal": None}
+  case_21 = {"etat": Contenu.VIDE, "animal": None}
+  case_22 = {"etat": Contenu.PREDATEUR, "animal": {"age": 2, "jrs_gestation": 0, "energie": 40, "disponible": False}}
+  
+  grille = {"matrice": [[case_11, case_12],
+                        [case_21, case_22]],
+            "nb_proies": 1,
+            "nb_predateurs": 1,
+            "nb_lignes": 2,
+            "nb_colonnes": 2}
+  definir_animal(grille, creer_animal(1, 0, 50, True), 0, 1)
+   ```
+  Sortie attendue : 
+  ```python
+  grille = {"matrice": [[{"etat": Contenu.PROIE, "animal": {"age": 5, "jrs_gestation": 3, "energie": 20, "disponible": True}}, 
+                       {"etat": Contenu.VIDE, "animal": {"age": 5, "jrs_gestation": 3, "energie": 20, "disponible": True}}],
+                      [{"etat": Contenu.VIDE, "animal": None}, 
+                       {"etat": Contenu.PREDATEUR, "animal": {"age": 2, "jrs_gestation": 0, "energie": 40, "disponible": False}}]],
+          "nb_proies": 1,
+          "nb_predateurs": 1,
+          "nb_lignes": 2,
+          "nb_colonnes": 2}
+  ```
+
+
+  
+
+### 6.7. definir_case
 Cette fonction met à jour l'état de la case située à la ligne et la colonne données.
 - **Entrée** : 
   - grille(dict): Une structure représentant la grille.
@@ -382,7 +402,7 @@ Cette fonction met à jour l'état de la case située à la ligne et la colonne 
             "nb_colonnes": 2}
   ```
   
-### 6.9. vider_case
+### 6.8. vider_case
 Cette fonction Écraser la case située à la ligne et la colonne données avec une case vide
 - **Entrée** :
   - grille(dict): Une structure représentant la grille.
@@ -413,7 +433,7 @@ Cette fonction Écraser la case située à la ligne et la colonne données avec 
 
   ```
   
-### 6.10. obtenir_population
+### 6.9. obtenir_population
 Cette fonction récupère le nombre de proies et de prédateurs dans une grille.
 - **Entrée** : 
   - grille(dict): Une structure représentant la grille.
@@ -438,7 +458,7 @@ Cette fonction récupère le nombre de proies et de prédateurs dans une grille.
   (1, 1)
   ```
   
-### 6.11. obtenir_dimensions
+### 6.10. obtenir_dimensions
 Cette fonction récupère les dimensions de la grille.
 - **Entrée** : 
   - grille(dict): Une structure représentant la grille.
@@ -463,7 +483,7 @@ Cette fonction récupère les dimensions de la grille.
   (2, 2)
   ```
   
-### 6.12. incrementer_nb_proies
+### 6.11. incrementer_nb_proies
 Cette fonction incrémente le nombre de proies dans la grille.
 - **Entrée** : 
   - grille(dict): Une structure représentant la grille.
@@ -486,7 +506,7 @@ Cette fonction incrémente le nombre de proies dans la grille.
   grille["nb_proies"] = 2
   ```
   
-### 6.13. decrementer_nb_proies
+### 6.12. decrementer_nb_proies
 Cette fonction décrémente le nombre de proies dans la grille.
 - **Entrée** : 
   - grille(dict): Une structure représentant la grille.
@@ -494,8 +514,8 @@ Cette fonction décrémente le nombre de proies dans la grille.
   ```python
   case_11 = {"etat": Contenu.VIDE, "animal": None}
   case_12 = {"etat": Contenu.PROIE, "animal": creer_animal()}
-  case_21 = {"etat": Contenu.PREDATEUR, "animal": creer_animal()}
-  case_22 = {"etat": Contenu.VIDE, "animal": None}
+  case_21 = {"etat": Contenu.PROIE, "animal": creer_animal()}
+  case_22 = {"etat": Contenu.PREDATEUR, "animal": None}
   grille = {"matrice": [[case_11, case_12],
                         [case_21, case_22]],
             "nb_proies": 2,
@@ -509,7 +529,7 @@ Cette fonction décrémente le nombre de proies dans la grille.
   grille["nb_proies"] = 1
   ```
   
-### 6.14. incrementer_nb_predateurs
+### 6.13. incrementer_nb_predateurs
 Cette fonction incrémente le nombre de prédateurs dans la grille.
 - **Entrée** : 
   - grille(dict): Une structure représentant la grille.
@@ -533,7 +553,7 @@ Cette fonction incrémente le nombre de prédateurs dans la grille.
   ```
   
 
-### 6.15. decrementer_nb_predateurs
+### 6.14. decrementer_nb_predateurs
 Cette fonction décrémente le nombre de prédateurs dans la grille.
 - **Entrée** : 
   - grille(dict): Une structure représentant la grille.
@@ -542,7 +562,7 @@ Cette fonction décrémente le nombre de prédateurs dans la grille.
   case_11 = {"etat": Contenu.VIDE, "animal": None}
   case_12 = {"etat": Contenu.PROIE, "animal": creer_animal()}
   case_21 = {"etat": Contenu.PREDATEUR, "animal": creer_animal()}
-  case_22 = {"etat": Contenu.VIDE, "animal": None}
+  case_22 = {"etat": Contenu.PREDATEUR, "animal": None}
   grille = {"matrice": [[case_11, case_12],
                         [case_21, case_22]],
             "nb_proies": 1,
@@ -557,7 +577,7 @@ Cette fonction décrémente le nombre de prédateurs dans la grille.
   ```
   
 
-### 6.16. check_nb_proies
+### 6.15. check_nb_proies
 Cette fonction vérifie si le nombre actuel de proies dans la grille est inférieur à max_val 
 - **Entrée** : 
   - grille(dict): Une structure représentant la grille.
@@ -585,8 +605,8 @@ Cette fonction vérifie si le nombre actuel de proies dans la grille est inféri
   
 
 
-### 6.17. ajuster_position_pour_grille_circulaire
-Cette fonction ajuster la position (ligne, colonne) pour une grille circulaire en utilisant les dimensions de la grille.
+### 6.16. ajuster_position_pour_grille_circulaire
+Cette fonction ajuste les coordonnées de position (lig, col) en utilisant les dimensions dim_lig et dim_col de la grille pour s'assurer que les lapins ou les loups ne sortent pas de la grille, mais plutôt réapparaissent de l'autre côté, créant ainsi un effet de "bouclage".
 - **Entrée** : 
   - lig(int): Ligne actuelle.
   - col(int): Colonne actuelle.
@@ -610,7 +630,7 @@ Cette fonction ajuster la position (ligne, colonne) pour une grille circulaire e
   
 
 
-### 6.18. choix_voisin_autour
+### 6.17. choix_voisin_autour
 Cette fonction cherche tous les voisins autour de la cellule (ligne, col) qui correspondent au "contenu" donné.
 <p align="center">
     <img src="assets/Algo_1.svg" alt="choix_voisin_autour">
@@ -648,8 +668,8 @@ Cette fonction cherche tous les voisins autour de la cellule (ligne, col) qui co
   
 
 
-### 6.19. remplir_grille
-
+### 6.18. remplir_grille
+Cette fonction cherche tous les voisins autour de la cellule (ligne, col) qui correspondent au "contenu" donné.
 <p align="center">
     <img src="assets/Algo_2.svg" alt="remplir_grille">
 </p>
@@ -690,7 +710,7 @@ Cette fonction parcourir chaque case de la grille et rendre tous les animaux dis
   - grille(dict): Une structure représentant la grille.
 - **Exemple** :
   ```python
-  case_11 = {"etat": Contenu.PROIE, "animal": {"age": 1, "jrs_gestation": 0, "energie": 5, "disponible": False}}
+ case_11 = {"etat": Contenu.PROIE, "animal": {"age": 1, "jrs_gestation": 0, "energie": 5, "disponible": False}}
   case_12 = {"etat": Contenu.PREDATEUR, "animal": {"age": 2, "jrs_gestation": 1, "energie": 4, "disponible": False}}
   case_21 = {"etat": Contenu.VIDE, "animal": None}
   case_22 = {"etat": Contenu.PROIE, "animal": {"age": 0, "jrs_gestation": 0, "energie": 6, "disponible": False}}
@@ -713,6 +733,7 @@ Cette fonction parcourir chaque case de la grille et rendre tous les animaux dis
   
 
 ### 7.2. deplacer_animal
+Cette fonction cherche un emplacement vide où déplacer l'animal, effectuer le déplacement et mettre à jour l'état et la disponibilité de l'animal.
 - **Entrée** : 
    - grille(dict): Une structure représentant la grille.
   - animal (dict): un dictionnaire représentant un animal
@@ -837,7 +858,7 @@ Cette fonction gère le cycle de vie d'un prédateur à une position donnée sur
 
 
 ### 7.5. executer_cycle
-Cette fonction siimule le passage d'un jour dans la grille. Les prédateurs peuvent manger les proies et les animaux peuvent se déplacer. Pour ce faire marquer tous les animaux comme disponibles pour ce cycle, puis parcourir la grille pour exécuter la bonne procédure du cycle de vie pour chaque animal. Il est nécessaires d'utiliser au minimum les fonctions "rendre_animaux_disponibles", "executer_cycle_proie" et "executer_cycle_predateur".
+Cette fonction est une fonction d'orchestration qui parcourt l'ensemble de la grille et exécute le cycle de vie approprié pour chaque animal (proie ou prédateur) présent sur la grille. Elle commence par rendre tous les animaux "disponibles" pour des actions comme le déplacement ou la reproduction, puis itère sur chaque cellule de la grille pour appeler soit executer_cycle_proie soit executer_cycle_predateur en fonction de l'animal occupant la cellule.
 <p align="center">
     <img src="assets/Algo_5.svg" alt="remplir_grille">
 </p>
