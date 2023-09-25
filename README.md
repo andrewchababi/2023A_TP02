@@ -690,7 +690,7 @@ Cette fonction parcourir chaque case de la grille et rendre tous les animaux dis
   - grille(dict): Une structure représentant la grille.
 - **Exemple** :
   ```python
- case_11 = {"etat": Contenu.PROIE, "animal": {"age": 1, "jrs_gestation": 0, "energie": 5, "disponible": False}}
+  case_11 = {"etat": Contenu.PROIE, "animal": {"age": 1, "jrs_gestation": 0, "energie": 5, "disponible": False}}
   case_12 = {"etat": Contenu.PREDATEUR, "animal": {"age": 2, "jrs_gestation": 1, "energie": 4, "disponible": False}}
   case_21 = {"etat": Contenu.VIDE, "animal": None}
   case_22 = {"etat": Contenu.PROIE, "animal": {"age": 0, "jrs_gestation": 0, "energie": 6, "disponible": False}}
