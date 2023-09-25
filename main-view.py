@@ -73,8 +73,8 @@ class Game:
 
         for ligne in range(NB_LIGNE):
             for col in range(NB_COLONNE):
-                x = ligne * (DIMENSION_CASE + MARGE_CASE) + MARGE_SUPP_LATERALES
-                y = col * (DIMENSION_CASE + MARGE_CASE) + GRID_Y_INITIAL
+                x = col * (DIMENSION_CASE + MARGE_CASE) + MARGE_SUPP_LATERALES
+                y = ligne * (DIMENSION_CASE + MARGE_CASE) + GRID_Y_INITIAL
                 color = self.obtenir_couleur_case(ligne, col)
 
                 pygame.draw.rect(
@@ -98,7 +98,7 @@ class Game:
 
     def initialiser_nouvelle_simulation(self):
         self.grille = logic.creer_grille(NB_LIGNE, NB_COLONNE)
-        logic.remplir_grille(self.grille, POURCENTAGE_CASES_OCCUPEES)
+        logic.remplir_grille(self.grille, POURCENTAGE_CASES_PROIES, POURCENTAGE_CASES_PREDATEURS)
         self.n_cycles = 0
 
     def attendre_bouton_recommencer(self):
