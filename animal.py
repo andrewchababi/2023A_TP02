@@ -4,6 +4,7 @@ def creer_animal(age=0, jrs_gestation=0, energie=0, disponible=True):
     return stats_animaux
 
 
+
 def obtenir_age(animal):
     # TODO: Retourner la valeur de l'âge de l'animal donné (Int)
     age = animal["age"]
