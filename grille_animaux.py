@@ -38,20 +38,21 @@ def obtenir_case(grille, ligne, colonne):
     case = grille["matrice"][ligne][colonne]
     return case
 
+def obtenir_etat(grille, ligne, colonne):
+    etat = grille["matrice"][ligne][colonne]
+    return etat["etat"]
 
-def obtenir_population(grille):
-    # TODO: Retourner un tuple contenant le nombre actuel de proies et de prédateurs dans la grille (Tuple[Int, Int])
-    pass
+
+def obtenir_animal(grille, ligne, colonne):
+    # TODO: Retourner l'animal présent dans la case aux coordonnées données (ligne, col) (Dict)
+    animal = grille["matrice"][ligne][colonne]
+    return animal["animal"]
 
 
 def obtenir_dimensions(grille):
     # TODO: Retourner un tuple avec le nombre de lignes et de colonnes de la grille (Tuple[Int, Int])
     pass
 
-
-def obtenir_animal(grille, ligne, col):
-    # TODO: Retourner l'animal présent dans la case aux coordonnées données (ligne, col) (Dict)
-    pass
 
 
 def incrementer_nb_proies(grille):
@@ -81,7 +82,8 @@ def check_nb_proies(grille, max_val):
 
 def vider_case(grille, ligne, col):
     # TODO: Écraser la case située à la ligne et la colonne données avec une case vide
-    pass
+    grille["matrice"][ligne][col] = creer_case()
+
 
 
 def definit_etat(grille, etat, ligne, col):
@@ -92,7 +94,11 @@ def definit_etat(grille, etat, ligne, col):
 
 def definir_animal(grille, animal, ligne, col):
     # TODO: Placer un animal (sous forme de dictionnaire) sur la case indiquée par les coordonnées (ligne, col).
-    pass
+    grille["matrice"][ligne][col]["animal"] = animal
+    
+    
+def definir_case(grille, case, ligne, col):
+    grille["matrice"][ligne][col] = case
 
 
 def obtenir_etat(grille, ligne, col):
