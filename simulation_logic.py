@@ -14,15 +14,32 @@ def simulation_est_terminee(grille):
 
 def rendre_animaux_disponibles(grille):
     # TODO: Parcourir chaque case de la grille et rendre tous les animaux disponibles (Booléen à True) pour la prochaine itération.
-    pass
+    for ligne in grille["matrice"]:
+        for case in ligne:
+            if case["animal"] != None:
+                case["animal"] = True
 
 
 def deplacer_animal(grille, ligne, col, animal):
     # TODO: Trouver un voisin vide où déplacer l'animal, effectuer le déplacement et mettre à jour l'état
     # et la disponibilité de l'animal. Utiliser "choix_voisin_autour", "definit_etat", "definir_animal",
     # "definir_disponibilite" et "vider_case" pour réaliser ces étapes.
-    pass
+    new_ligne, new_col = choix_voisin_autour(grille, ligne, col, 0)
 
+    if new_ligne is not None and new_col is not None:
+        #on vide la case sure laquelle on etait
+        vider_case(grille, ligne, col)
+        #on definit une nouvelle case come l'animal avant
+        definir_animal(grille, animal, new_ligne, new_col)
+        #on definit l'etat de la nouvelle case come occupe
+        definir_etat(grille, "occuper", new_ligne, new_col)
+        #definit la disponibilite de la nouvelle case
+        definir_disponibilite(animal, False)
+        
+        return True
+    else:
+        return False
+        
 
 def executer_cycle_proie(grille, ligne, col, animal):
     # TODO: Gérer le cycle de vie d'une proie à une position donnée sur la grille.
