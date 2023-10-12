@@ -62,6 +62,7 @@ def obtenir_population(grille):
     
     return nomb_proie, nomb_predateur           
 
+def obtenir_dimensions(grille):
     # TODO: Retourner un tuple avec le nombre de lignes et de colonnes de la grille (Tuple[Int, Int])
     nomb_ligne = len(grille["matrice"])
     nomb_col = len(grille["matrice"][0]) if nomb_ligne > 0 else 0
