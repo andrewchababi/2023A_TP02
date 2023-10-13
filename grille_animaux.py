@@ -118,7 +118,7 @@ def definir_case(grille, case, ligne, col):
 def generer_entier(min_val, max_val):
     # TODO: Utiliser une librairie pour générer un nombre entier aléatoire entre min_val et max_val inclus.
     # Le résultat doit être un entier.
-    pass
+    return random.randint(min_val, max_val)
 
 
 def ajuster_position_pour_grille_circulaire(lig, col, dim_lig, dim_col):
@@ -183,6 +183,7 @@ def remplir_grille(grille, pourcentage_proie, pourcentage_predateur):
         i, j = toutes_positions.pop()
         age_proie = random.randint(0, MAX_AGE_PROIE)
         est_gestation = age_proie >= NB_JRS_PUBERTE_PROIE # and random.choice([True, False])
+        proie = creer_animal(age_proie, est_gestation, True)
         proie = {"age": age_proie, "gestation": est_gestation}
         definir_animal(grille, proie, i, j)
         definir_etat(grille, Contenu.PROIE, i, j)
@@ -198,7 +199,7 @@ def remplir_grille(grille, pourcentage_proie, pourcentage_predateur):
         i, j = toutes_positions.pop()
         age_pred = random.randint(0, MAX_AGE_PRED)
         est_gestation = age_pred >= NB_JRS_PUBERTE_PRED #and random.choice([True, False])
-        pred = {"age": age_pred, "gestation": est_gestation, "energie": AJOUT_ENERGIE}
+        pred = creer_animal(age_pred, est_gestation, AJOUT_ENERGIE, True)
         definir_animal(grille, pred, i, j)
         definir_etat(grille, Contenu.PREDATEUR, i, j)
     
