@@ -4,7 +4,8 @@ from simulation_constants import NB_COLONNE, NB_LIGNE
 TITRE = "La Forêt de la Vie"
 
 # Polices
-CHEMIN_POLICE = "./assets/Brightly_Crush.ttf"
+CHEMIN_POLICE = "C:\Users\Andrew Chababi\coding shit\First-labs\INF1007\Tp_lab\TP_2\2023A_TP02\assets\Brightly_Crush.ttf"
+"./assets/Brightly_Crush.ttf"
 TAILLE_POLICE = 34
 
 # Couleurs
@@ -18,7 +19,9 @@ COULEUR_BORDURE_CASE = (255, 255, 255)  # Blanc
 COULEUR_TEXTE = (0, 0, 0)  # Noir
 
 # Images
-CHEMIN_IMAGE_FOND = "./assets/background.jpg"
+CHEMIN_IMAGE_FOND = "C:\Users\Andrew Chababi\coding shit\First-labs\INF1007\Tp_lab\TP_2\2023A_TP02\assets\background.jpg"
+#"C:\\Users\\Andrew Chababi\\coding shit\\First-labs\\INF1007\\Tp_lab\\TP_2\\2023A_TP02\\assets\\background.jpg"
+ #"C:/Users/YourUsername/path_to_script/assets/background.jpg"
 
 # Disposition
 DIMENSION_CASE = 20
